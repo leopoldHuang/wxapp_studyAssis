@@ -1,23 +1,79 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<!--pages/main/main.wxml-->
+<van-popup
+  show="{{ show }}"
+  position="right"
+  overlay="{{ true }}"
+  z-index="100"
+  custom-style='height:100%;width:30%'
+  bind:click-overlay="onClose"
+>
+<van-cell-group>
+  <van-cell title="单元格"/>
+  <van-cell title="单元格"/>
+  <van-cell title="单元格"/>
+  <van-cell title="单元格"/>
+  <van-cell title="单元格"/>
+  <van-cell title="单元格"/>
+</van-cell-group>
+</van-popup>
+<view class='head'>
+  <view>
+    <image src="../../images/1.jpg" mode="scaleToFill " />
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view>
+    <rich-text class='title' nodes="<h2>title</h2>" />
+  </view>
+  <view>
+    <van-icon class='side' name="wap-nav" slot="right" size="60rpx" bind:click="onClose"/>
   </view>
 </view>
+<view class="divLine"></view>
+
+
+<view class='time'>
+  <view class='weekday'>
+    <rich-text nodes="<h2>{{weekday}}</h2>" />
+  </view>
+  <view class='date'>
+    <rich-text nodes="<h4>{{date}}</h4>" />
+  </view>
+</view>
+
+
+<view class='TodoList'>
+  <view class='SubTitle'>
+    <rich-text nodes="<h3>最近日程</h3>" />
+  </view>
+  <scroll-view class='Todos' scroll-y>
+    <van-collapse value="{{ activeNames }}" bind:change="onChangeTodo" bind:open="onOpen" bind:close="onClose">
+      <van-collapse-item wx:for="{{TodoList}}" wx:key="id" name="{{key}}">
+        <view slot="title">{{item.Subject}}</view>
+        <view slot="value">{{item.StartTime}}~{{item.EndTime}}</view>
+        {{item.Content}}
+      </van-collapse-item>
+    </van-collapse>
+  </scroll-view>
+</view>
+
+<view class='ForceTime'>
+  <view class='SubTitle'>
+    <rich-text nodes="<h3>本周已专注时长</h3>" />
+    <rich-text nodes="<h3>{{TotalFocusTime}}h</h3>" />
+  </view>
+    <canvas canvas-id="columnCanvas" disable-scroll="true" class="ForceTimeChart"></canvas>
+</view>
+<view class='navigator'>
+  <van-tabbar active="{{ active }}" active-color="red" inactive-color="grey" bind:change="onChangePage" safe-area-inset-bottom="true">
+    <van-tabbar-item name='home' icon="wap-home">主页</van-tabbar-item>
+    <van-tabbar-item name='todolist' icon="todo-list">日程</van-tabbar-item>
+    <van-tabbar-item>
+      <button class='start' bindtap="OnStartFocus">
+      <view>开始</view>
+      <view>专注</view>
+      </button>
+    </van-tabbar-item>
+    <van-tabbar-item name='note' icon="column">笔记</van-tabbar-item>
+    <van-tabbar-item name='me' icon="manager">我的</van-tabbar-item>
+  </van-tabbar>
+</view>
+<view class='placeholder'></view>

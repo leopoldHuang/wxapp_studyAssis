@@ -87,6 +87,26 @@ Page({
       }
     ]
   },
+  onLoad: function () {
+    //从后端获取数据
+    this.getdata()
+    // 屏幕宽度
+    this.setData({
+      imageWidth: wx.getSystemInfoSync().windowWidth
+    });
+    //计算屏幕宽度比例
+    windowW = this.data.imageWidth / 375;
+    //获取时间
+    setInterval(() => {
+      var date = util.formatTime(new Date());
+      this.setData({
+        date: date,
+      })
+    }, 1000)
+  },
+  getdata(){
+    console.log("获取数据接口")
+  },
   //日程显示改变
   onChangeTodo(event) {
     this.setData({
@@ -104,7 +124,9 @@ Page({
     this.setData({
       active: event.detail,
     })
-    console.log(event.detail);
+    wx.switchTab({      
+      url: '../'+event.detail+'/'+ event.detail //要跳转到的页面路径
+  }) 
   },
   //侧边栏打开或关闭
   onClose() {
@@ -112,26 +134,7 @@ Page({
       show: !this.data.show
     });
   },
-  //开始专注
-  OnStartFocus() {
-    console.log('开始专注')
-  },
 
-  onLoad: function () {
-    // 屏幕宽度
-    this.setData({
-      imageWidth: wx.getSystemInfoSync().windowWidth
-    });
-    //计算屏幕宽度比例
-    windowW = this.data.imageWidth / 375;
-    //获取时间
-    setInterval(() => {
-      var date = util.formatTime(new Date());
-      this.setData({
-        date: date,
-      })
-    }, 1000)
-  },
   //
   onShow: function () {
     //计算日期时间

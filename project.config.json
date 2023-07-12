@@ -5,6 +5,7 @@
     "include": []
   },
   "setting": {
+    "checkSiteMap": false,
     "bundle": false,
     "userConfirmedBundleSwitch": false,
     "urlCheck": true,
@@ -28,8 +29,8 @@
     "useApiHostProcess": true,
     "showShadowRootInWxmlPanel": true,
     "packNpmManually": false,
-    "enableEngineNative": false,
     "packNpmRelationList": [],
+    "enableEngineNative": false,
     "minifyWXSS": true,
     "showES6CompileOption": false,
     "minifyWXML": true,
@@ -38,11 +39,13 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "condition": false
+    "condition": false,
+    "ignoreDevUnusedFiles": false,
+    "ignoreUploadUnusedFiles": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.19.4",
-  "appid": "wx56f1d5b2d10273cb",
+  "appid": "wxf372dcc5543200d2",
   "projectname": "miniprogram-92",
   "condition": {},
   "editorSetting": {

@@ -1,66 +1,74 @@
-// pages/schedule/schedule.js
+// pages/main/main.js
+var util = require('../../utils/util.js');
+//引入wxcharts.js插件
+var wxCharts = require("../../utils/wxcharts");
+//定义记录初始屏幕宽度比例，便于初始化
+var windowW = 0;
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    date: util.formatTime(new Date()),
+    weekday: '',
+    active: "home",
+    show: false,
+    TodoList: [{
+      "id": 0,
+      "StartDate": "2023/07/15",
+      "Attribute": "每天",
+      "StartTime": "8:00",
+      "Subject": "数学",
+      "Content": "学习内容",
+      "Duration": "240",
+      "EndTime": "12:00"
+    },
+    {
+      "id": 1,
+      "StartDate": "2023/07/15",
+      "Attribute": "每天",
+      "StartTime": "14:00",
+      "Subject": "政治",
+      "Content": "学习内容",
+      "Duration": "60",
+      "EndTime": "15:00"
+    },
+    {
+      "id": 2,
+      "StartDate": "2023/07/15",
+      "Attribute": "每天",
+      "StartTime": "15:00",
+      "Subject": "专业课",
+      "Content": "学习内容",
+      "Duration": "180",
+      "EndTime": "18:00"
+    },
+    {
+      "id": 3,
+      "StartDate": "2023/07/15",
+      "Attribute": "每天",
+      "StartTime": "20:00",
+      "Subject": "英语",
+      "Content": "学习内容",
+      "Duration": "180",
+      "EndTime": "23:00"
+    },
+  ]
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  
+  //底部导航改变 跳转
+  onChangePage(event) {
+    this.setData({
+      active: event.detail,
+    })
+    wx.switchTab({      
+      url: '../'+event.detail+'/'+ event.detail //要跳转到的页面路径
+  }) 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  //侧边栏打开或关闭
+  onClose() {
+    this.setData({
+      show: !this.data.show
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
+onshow:function(){
+}
+  //
 })

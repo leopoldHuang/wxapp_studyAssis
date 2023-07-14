@@ -1,2 +1,34 @@
 <!--pages/schedule/schedule.wxml-->
-<text>pages/schedule/schedule.wxml</text>
+<!--pages/main/main.wxml-->
+<header Title="日程"></header>
+<view class="divLine"></view>
+<view class="schedule">
+</view>
+<view class="screen">
+<button class="listall" bindtap="all">ALL</button>
+<button class="list1" bindtap="checkrepeat">重复任务</button>
+<button class="list2" bindtap="checkdisposable">一次性任务</button>
+</view>
+<form class="task">
+<view class="item" wx:for="{{TodoList}}" wx:key="id" name="{{key}}">
+<view class="point">·
+</view>
+<view class="item-time">
+  {{item.StartTime}}<view>~</view><view>{{item.EndTime}}
+</view>
+</view>
+<view class="line"></view>
+<view>
+<view class="thing">{{item.Subject}}</view>
+<view class="attribute">{{item.Attribute}}</view>
+</view>
+<view>
+<image src="../../images/dustbin.jpg" mode="scaleToFill" class="trash"></image>
+</view>
+</view>
+
+</form>
+<div style="z-index:30">
+<button class="addtodu" ></button>
+</div>
+<navigator></navigator>

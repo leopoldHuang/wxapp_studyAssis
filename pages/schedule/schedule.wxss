@@ -1,1 +1,106 @@
 /* pages/schedule/schedule.wxss */
+.sidecontent{
+  height: 750rpx;
+  width: 50%;
+  margin-right: 0%;
+}
+.head{
+  margin-top: 10rpx;
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.divLine{
+  background: #E0E3DA;
+  width: 100%;
+  height: 3rpx;
+ }
+
+.schedule {
+  margin: 20rpx 30rpx 10rpx 30rpx;
+}
+.screen{
+  display : flex;
+  width: 100%;
+  height: 90rpx;
+}
+.screen button{
+    background: rgb(255, 255, 255);
+    height:fit-content;
+    width:fit-content;
+}
+.screen button.list2{
+    color: rgb(107, 107, 107);
+    border: 1px solid rgb(187, 187, 187); 
+    border-radius: 2px; 
+    font-size: 30rpx;
+}
+
+.screen button.list2::after{
+    border:none;
+}
+.screen button.listall{
+    color: rgb(0, 0, 0);
+    border: 1px solid #000000; 
+    border-radius: 2px;  
+    font-size: 30rpx;
+}
+.screen button.listall::after{
+    border:none;
+}
+.screen button.list1{
+    color: rgb(107, 107, 107);
+    border: 1px solid rgb(187, 187, 187); 
+    border-radius: 2px;  
+    font-size: 30rpx;
+}
+.screen button.list1::after{
+    border:none;
+}
+
+.task view.item{
+    display : flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 200rpx;
+    margin-top: 15px;
+}
+.task view.point{
+    font-size: 70px;
+    display : flex;
+    align-items: center;
+    margin-left:20px;
+}
+.task view.item-time{
+    text-align: center;
+    font-size:23px;
+}
+.task view.line{
+    float:left;
+    margin-top:5rpx;
+    margin-left:20rpx;
+    width: 1px;
+    height: 200rpx;
+    background: rgb(255, 255, 255);
+    border-left:3px darkgray;
+    border-left-style: dotted;
+}
+.task view.thing{
+  font-size: 30px;
+  margin-top: 8px;
+  margin-left: 10px;
+}
+.task view.attribute{
+  margin-left: 10px;
+  margin-top: 6px;
+  color:darkgray;
+}
+image.trash{
+  position: absolute; /* 相对relative也可以 */
+  right: 0; /* 靠右调节 */
+  margin-right: 35rpx;
+  margin-top: -10px;
+}
+ 

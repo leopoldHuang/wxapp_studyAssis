@@ -1,0 +1,17 @@
+/* component/navigator/navigator.wxss */
+
+.start {
+  color: white;
+  height: 120rpx;
+  margin-bottom: 50rpx;
+  text-align: center;
+  line-height: 60rpx;
+  width: 100%;
+  margin-left: 0%;
+  padding-top: 4rpx;
+  padding-bottom: 10rpx;
+  z-index: 1;
+}
+.placeholder{
+  height: 150rpx;
+}

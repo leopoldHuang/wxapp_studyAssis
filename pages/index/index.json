@@ -1,5 +1,7 @@
 {
   "usingComponents": {
+    "header":"/component/header/header",
+    "navigator":"/component/navigator/navigator",
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-tabbar": "/miniprogram_npm/vant-weapp/tabbar/index",
     "van-tabbar-item": "/miniprogram_npm/vant-weapp/tabbar-item/index",

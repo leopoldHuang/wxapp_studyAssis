@@ -1,0 +1,31 @@
+<!--pages/main/main.wxml-->
+<van-popup
+  show="{{ show }}"
+  position="right"
+  overlay="{{ true }}"
+  z-index="99"
+  custom-style='height:100%;width:30%'
+  bind:click-overlay="SideClose"
+>
+<van-cell-group>
+  <van-cell title="拍照搜题" is-link url="../../pages/searchQuestions/camera/camera"/>
+  <van-cell title="单元格"/>
+  <van-cell title="单元格"/>
+  <van-cell title="单元格"/>
+  <van-cell title="单元格"/>
+  <van-cell title="单元格"/>
+</van-cell-group>
+</van-popup>
+<view class='head'>
+  <view>
+    <image src="../../images/1.jpg" mode="scaleToFill " />
+  </view>
+  <view>
+    <rich-text class='title' nodes="<h2>{{Title}}</h2>" />
+  </view>
+  <view>
+    <van-icon class='side' name="wap-nav" slot="right" size="60rpx" bind:click="SideClose"/>
+  </view>
+</view>
+<view class="divLine"></view>
+<view class='placeholder'></view>

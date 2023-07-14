@@ -4,8 +4,15 @@ var util = require('../../utils/util.js');
 var wxCharts = require("../../utils/wxcharts");
 //定义记录初始屏幕宽度比例，便于初始化
 var windowW = 0;
+var app=getApp();
+var ChooseColor=app.globalData.theme.ChooseColor
 Page({
   data: {
+    ChooseColor:app.globalData.theme.ChooseColor, 
+    UnChooseColor:app.globalData.theme.UnChooseColor,  
+    ChooseFontColor:app.globalData.theme.ChooseFontColor,  
+    UnchooseFontColor:app.globalData.theme.UnchooseFontColor,  
+    BorderColor:app.globalData.theme.BorderColor,  
     date: util.formatTime(new Date()),
     weekday: '',
     active: "home",
@@ -91,9 +98,6 @@ Page({
     //从后端获取数据
     this.getdata()
 
-    // const globalData = getApp().globalData.noteData;
-    // console.log('app.js 的 globalData', globalData);
-
     // 屏幕宽度
     this.setData({
       imageWidth: wx.getSystemInfoSync().windowWidth
@@ -110,6 +114,11 @@ Page({
   },
   getdata(){
     console.log("获取数据接口")
+    const globalData = getApp().globalData;
+    console.log('app.js 的 globalData', globalData);
+    this.setData({
+      test:globalData
+    })
   },
   //日程显示改变
   onChangeTodo(event) {
@@ -179,7 +188,7 @@ Page({
       categories: Object.keys(this.data.FocusTime),
       series: [{
         name: '专注时长',
-        color: 'red',
+        color: ChooseColor,
         data: Object.values(this.data.FocusTime),
         format: function (val, name) {
           return val.toFixed(1) + 'h';

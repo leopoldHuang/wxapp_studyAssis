@@ -36,7 +36,7 @@ image {
 .TodoList {
   margin: 20rpx 20rpx 10rpx 20rpx;
   padding:5rpx 5rpx 5rpx 5rpx;
-  border: 5rpx solid red;
+  border: 5rpx solid;
   border-radius: 2%;
 }
 .Todos{
@@ -47,7 +47,7 @@ image {
 .ForceTime {
   margin: 30rpx 20rpx 0rpx 20rpx;
   padding:5rpx 5rpx 5rpx 5rpx;
-  border: 5rpx solid red;
+  border: 5rpx solid;
   border-radius: 2%;
   height: 450rpx;
 }

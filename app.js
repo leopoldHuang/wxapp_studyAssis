@@ -1,4 +1,5 @@
 // app.js
+var app = getApp();  
 function schedule_data(startTime,endTime,name,type) {
   this.startTime = startTime;
   this.endTime = endTime;
@@ -35,13 +36,15 @@ App({
         
       }
     })
-    
+    var userOpenid;
     wx.cloud.callFunction({//获取openid
       name:'getOpenId',
     }).then(res=>{
-      this.userOpenid=res.result.openid
-      // console.log(this.userOpenid)
+      this.globalData.userOpenid=res.result.openid
+      console.log(res.result.openid)
+      this.test()
     })
+    // this.globalData.userOpenid=userOpenid;
 
     const db = wx.cloud.database()
     const schedule = db.collection('schedule')
@@ -66,7 +69,7 @@ App({
         }
       })
     }
-    this.Data=dataArr
+    this.globalData.Data=dataArr
     console.log(this.Data)
 
     // console.log(userOpenid)
@@ -114,7 +117,22 @@ App({
 
 
   },
+  test(){
+    console.log(1)
+  },
   globalData: {
+    theme:{ 
+      //图表，按钮等选中颜色 
+      ChooseColor:'blue', 
+      //未选中颜色
+      UnChooseColor:'grey', 
+      //文字选中颜色 
+      ChooseFontColor:"white", 
+      //文字未选中颜色 
+      UnchooseFontColor:"grey", 
+      //边框颜色 
+      BorderColor:"blue" 
+    },
     userOpenid: null,
     Data: null
   }

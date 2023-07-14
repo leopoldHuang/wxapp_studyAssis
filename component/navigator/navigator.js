@@ -11,21 +11,28 @@ Component({
    * 组件的初始数据
    */
   data: {
-    ChooseColor: app.globalData.theme.ChooseColor,
-    UnChooseColor: app.globalData.theme.UnChooseColor,
-    ChooseFontColor: app.globalData.theme.ChooseFontColor,
-    UnchooseFontColor: app.globalData.theme.UnchooseFontColor,
-    BorderColor: app.globalData.theme.BorderColor,
     active: "index"
   },
 
   /**
    * 组件的方法列表
    */
+    //颜色跟随系统
   attached() {
     this.PathChange()
+    this.SetColor()
   },
   methods: {
+    //颜色
+    SetColor(){
+      this.setData({
+        ChooseColor: app.globalData.theme.ChooseColor,
+        UnChooseColor: app.globalData.theme.UnChooseColor,
+        ChooseFontColor: app.globalData.theme.ChooseFontColor,
+        UnchooseFontColor: app.globalData.theme.UnchooseFontColor,
+        BorderColor: app.globalData.theme.BorderColor,
+      })
+    },
     //根据路径设置底部导航栏显示
     PathChange() {
       var pages = getCurrentPages();

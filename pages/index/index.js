@@ -8,11 +8,6 @@ var ChooseColor = app.globalData.theme.ChooseColor
 
 Page({
   data: {
-    ChooseColor: app.globalData.theme.ChooseColor,
-    UnChooseColor: app.globalData.theme.UnChooseColor,
-    ChooseFontColor: app.globalData.theme.ChooseFontColor,
-    UnchooseFontColor: app.globalData.theme.UnchooseFontColor,
-    BorderColor: app.globalData.theme.BorderColor,
     date: util.formatTime(new Date()),
     weekday: '',
     active: "home",
@@ -21,6 +16,15 @@ Page({
     FocusTime: [],
     //日程数据
     TodoList: []
+  },
+  //修改全局颜色
+  ChangeColor(e){
+    var app = getApp()
+    app.globalData.theme.ChooseColor=e.detail
+    console.log(app.globalData.theme.ChooseColor)
+    wx.reLaunch({
+      url: '../index/index',
+    })
   },
   onLoad: function () {
     //从后端获取数据
@@ -41,7 +45,6 @@ Page({
     }, 1000)
   },
   getdata() {
-
     console.log("获取数据接口")
     //获取日程数据
     var that = this;
@@ -155,10 +158,7 @@ Page({
     });
   },
   onOpen(event) {
-
     Toast(`展开: ${event.detail}`);
-
-
   },
   onClose(event) {
     Toast(`关闭: ${event.detail}`);
@@ -172,15 +172,21 @@ Page({
       url: '../' + event.detail + '/' + event.detail //要跳转到的页面路径
     })
   },
-  //侧边栏打开或关闭
-  onClose() {
-    this.setData({
-      show: !this.data.show
-    });
-  },
 
-  //
+  //颜色跟随系统
+  SetColor(){
+    this.setData({
+      ChooseColor: app.globalData.theme.ChooseColor,
+      UnChooseColor: app.globalData.theme.UnChooseColor,
+      ChooseFontColor: app.globalData.theme.ChooseFontColor,
+      UnchooseFontColor: app.globalData.theme.UnchooseFontColor,
+      BorderColor: app.globalData.theme.BorderColor,
+    })
+    ChooseColor = app.globalData.theme.ChooseColor
+  },
   onShow: function () {
+    //设置颜色
+    this.SetColor()
     //计算日期时间
     var today = new Date().getDay();
     var week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']

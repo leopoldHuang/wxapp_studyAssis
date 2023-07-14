@@ -112,7 +112,7 @@ App({
   globalData: {
     theme:{ 
       //图表，按钮等选中颜色 
-      ChooseColor:'#007bff', 
+      ChooseColor:'red', 
       //未选中颜色
       UnChooseColor:'grey', 
       //文字选中颜色 
@@ -120,7 +120,7 @@ App({
       //文字未选中颜色 
       UnchooseFontColor:"grey", 
       //边框颜色 
-      BorderColor:"#007bff" 
+      BorderColor:"red" 
     },
     userOpenid: null,
     Data: null

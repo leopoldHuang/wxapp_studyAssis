@@ -11,7 +11,8 @@
     "van-collapse-item": "/miniprogram_npm/vant-weapp/collapse-item/index",
     "van-popup": "/miniprogram_npm/vant-weapp/popup/index",
     "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
-    "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index"
+    "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index",
+    "van-field": "/miniprogram_npm/vant-weapp/field/index"
   },
   "styleIsolation": "apply-shared"
 }

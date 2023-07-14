@@ -5,7 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ChooseColor:app.globalData.theme.ChooseColor, 
     hours: 0, // 小时
     minutes: 0, // 分钟
     seconds: 0, // 秒
@@ -14,6 +13,18 @@ Page({
     duration: '' // 本次计时的时长
   },
 
+    //颜色跟随系统
+    SetColor(){
+      //设置颜色
+      this.setData({
+        ChooseColor: app.globalData.theme.ChooseColor,
+        UnChooseColor: app.globalData.theme.UnChooseColor,
+        ChooseFontColor: app.globalData.theme.ChooseFontColor,
+        UnchooseFontColor: app.globalData.theme.UnchooseFontColor,
+        BorderColor: app.globalData.theme.BorderColor,
+      })
+      var ChooseColor = app.globalData.theme.ChooseColor
+    },
   startTiming() {
     if (this.data.isTiming) {
       return; // 如果正在计时，不执行操作

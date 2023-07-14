@@ -17,6 +17,8 @@ function note_data(noteTime,name,content) {
 }
 
 
+
+
 App({
   onLaunch() {
     // 展示本地存储能力
@@ -41,8 +43,6 @@ App({
       name:'getOpenId',
     }).then(res=>{
       this.globalData.userOpenid=res.result.openid
-      console.log(res.result.openid)
-      this.test()
     })
     // this.globalData.userOpenid=userOpenid;
 
@@ -70,7 +70,6 @@ App({
       })
     }
     this.globalData.Data=dataArr
-    console.log(this.Data)
 
     // console.log(userOpenid)
 
@@ -87,19 +86,8 @@ App({
     //   }
     // })
 
-    // noteData.add({//添加函数
-    //   data: {
-    //     date: new Date(),
-    //     name: setName,
-    //     content: setContent
-    //   },
-    //   success: function(res) {
-    //     console.log('数据插入成功', res)
-    //   },
-    //   fail: function(err) {
-    //     console.error('数据插入失败', err)
-    //   }
-    // })
+    
+    
     
     // noteData.doc(noteId).update({//修改函数
     //   data: {

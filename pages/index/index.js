@@ -4,15 +4,15 @@ var util = require('../../utils/util.js');
 var wxCharts = require("../../utils/wxcharts");
 //定义记录初始屏幕宽度比例，便于初始化
 var windowW = 0;
-var app=getApp();
-var ChooseColor=app.globalData.theme.ChooseColor
+var app = getApp();
+var ChooseColor = app.globalData.theme.ChooseColor
 Page({
   data: {
-    ChooseColor:app.globalData.theme.ChooseColor, 
-    UnChooseColor:app.globalData.theme.UnChooseColor,  
-    ChooseFontColor:app.globalData.theme.ChooseFontColor,  
-    UnchooseFontColor:app.globalData.theme.UnchooseFontColor,  
-    BorderColor:app.globalData.theme.BorderColor,  
+    ChooseColor: app.globalData.theme.ChooseColor,
+    UnChooseColor: app.globalData.theme.UnChooseColor,
+    ChooseFontColor: app.globalData.theme.ChooseFontColor,
+    UnchooseFontColor: app.globalData.theme.UnchooseFontColor,
+    BorderColor: app.globalData.theme.BorderColor,
     date: util.formatTime(new Date()),
     weekday: '',
     active: "home",
@@ -28,72 +28,9 @@ Page({
       "Sun": 7,
     },
     //日程数据
-    TodoList: [{
-        "id": 0,
-        "StartDate": "2023/07/15",
-        "StartTime": "8:00",
-        "Subject": "数学",
-        "Content": "学习内容",
-        "Duration": "240"
-      },
-      {
-        "id": 1,
-        "StartDate": "2023/07/15",
-        "StartTime": "14:00",
-        "Subject": "政治",
-        "Content": "学习内容",
-        "Duration": "60"
-      },
-      {
-        "id": 2,
-        "StartDate": "2023/07/15",
-        "StartTime": "15:00",
-        "Subject": "专业课",
-        "Content": "学习内容",
-        "Duration": "180"
-      },
-      {
-        "id": 3,
-        "StartDate": "2023/07/15",
-        "StartTime": "20:00",
-        "Subject": "英语",
-        "Content": "学习内容",
-        "Duration": "180"
-      },
-      {
-        "id": 4,
-        "StartDate": "2023/07/16",
-        "StartTime": "8:00",
-        "Subject": "数学",
-        "Content": "学习内容",
-        "Duration": "240"
-      },
-      {
-        "id": 5,
-        "StartDate": "2023/07/16",
-        "StartTime": "14:00",
-        "Subject": "政治",
-        "Content": "学习内容",
-        "Duration": "60"
-      },
-      {
-        "id": 6,
-        "StartDate": "2023/07/16",
-        "StartTime": "15:00",
-        "Subject": "专业课",
-        "Content": "学习内容",
-        "Duration": "180"
-      },
-      {
-        "id": 7,
-        "StartDate": "2023/07/16",
-        "StartTime": "20:00",
-        "Subject": "英语",
-        "Content": "学习内容",
-        "Duration": "180"
-      }
-    ]
+    TodoList: []
   },
+
   onLoad: function () {
     //从后端获取数据
     this.getdata()
@@ -112,12 +49,29 @@ Page({
       })
     }, 1000)
   },
-  getdata(){
+  getdata() {
     console.log("获取数据接口")
-    const globalData = getApp().globalData;
-    console.log('app.js 的 globalData', globalData);
-    this.setData({
-      test:globalData
+    //获取日程数据
+    var that = this;
+    wx.cloud.database().collection('schedule').where({ //查找函数
+      _openid: getApp().globalData.userOpenid
+    }).get({
+      success: function (res) {
+        var TodoList = res.data
+        TodoList.forEach((value, i) => {
+          value.id = i
+          value.EndHM = value.EndTime.slice(-5, );
+          value.StartHM = value.StartTime.slice(-5, );
+          value.Date = value.StartTime.slice(5, 10)
+        })
+        TodoList.sort((a, b) =>new Date(a.StartTime) - new Date(b.StartTime));
+        that.setData({
+          TodoList: res.data
+        })
+      },
+      fail: function (err) {
+        console.error('查询用户信息失败', err)
+      }
     })
   },
   //日程显示改变
@@ -127,7 +81,10 @@ Page({
     });
   },
   onOpen(event) {
+
     Toast(`展开: ${event.detail}`);
+
+
   },
   onClose(event) {
     Toast(`关闭: ${event.detail}`);
@@ -137,9 +94,9 @@ Page({
     this.setData({
       active: event.detail,
     })
-    wx.switchTab({      
-      url: '../'+event.detail+'/'+ event.detail //要跳转到的页面路径
-  }) 
+    wx.switchTab({
+      url: '../' + event.detail + '/' + event.detail //要跳转到的页面路径
+    })
   },
   //侧边栏打开或关闭
   onClose() {
@@ -209,7 +166,7 @@ Page({
           width: 20
         }
       },
-      legend:false,
+      legend: false,
       width: 360,
       height: 180,
     });

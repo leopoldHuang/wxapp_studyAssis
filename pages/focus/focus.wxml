@@ -1,2 +1,12 @@
 <!--pages/focus/focus.wxml-->
-<text>pages/focus/focus.wxml</text>
+<header Title="专注"></header>
+
+<!-- 计时组件 -->
+<view class="timer-container">
+  <text class="timer">{{hours}}小时 {{minutes}}分钟 {{seconds}}秒</text>
+  <button class="start-button" bindtap="startTiming" style="background-color: {{ChooseColor}};">开始</button>
+  <button class="stop-button" bindtap="stopTiming" style="background-color: {{ChooseColor}};">结束</button>
+  <text class="duration" wx:if="{{duration}}">本次计时时长：{{duration}}</text>
+</view>
+
+<navigator></navigator>

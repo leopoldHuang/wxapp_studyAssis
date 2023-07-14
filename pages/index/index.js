@@ -63,7 +63,6 @@ Page({
           value.date = value.startTime.slice(5, 10)
         })
         TodoList.sort((a, b) => new Date(a.StartTime) - new Date(b.StartTime));
-        console.log(TodoList)
         that.setData({
           TodoList: TodoList
         })

@@ -38,6 +38,7 @@ App({
         
       }
     })
+    
     var userOpenid;
     wx.cloud.callFunction({//获取openid
       name:'getOpenId',

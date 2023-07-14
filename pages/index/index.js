@@ -2,10 +2,10 @@
 var util = require('../../utils/util.js');
 //引入wxcharts.js插件
 var wxCharts = require("../../utils/wxcharts");
-//定义记录初始屏幕宽度比例，便于初始化
-var windowW = 0;
+var windowW
 var app = getApp();
 var ChooseColor = app.globalData.theme.ChooseColor
+
 Page({
   data: {
     ChooseColor: app.globalData.theme.ChooseColor,
@@ -18,19 +18,10 @@ Page({
     active: "home",
     show: false,
     //总专注时长数据
-    FocusTime: {
-      "Mon": 2,
-      "Tus": 5,
-      "Wed": 3.5,
-      "Thu": 5,
-      "Fri": 9,
-      "Sat": 12,
-      "Sun": 7,
-    },
+    FocusTime: [],
     //日程数据
     TodoList: []
   },
-
   onLoad: function () {
     //从后端获取数据
     this.getdata()
@@ -50,6 +41,7 @@ Page({
     }, 1000)
   },
   getdata() {
+
     console.log("获取数据接口")
     //获取日程数据
     var that = this;
@@ -64,10 +56,92 @@ Page({
           value.StartHM = value.StartTime.slice(-5, );
           value.Date = value.StartTime.slice(5, 10)
         })
-        TodoList.sort((a, b) =>new Date(a.StartTime) - new Date(b.StartTime));
+        TodoList.sort((a, b) => new Date(a.StartTime) - new Date(b.StartTime));
         that.setData({
-          TodoList: res.data
+          TodoList: TodoList
         })
+      },
+      fail: function (err) {
+        console.error('查询用户信息失败', err)
+      }
+    })
+    ///获取一周专注时间数据
+    var currentDate = new Date();
+    var year = currentDate.getFullYear();
+    var month = currentDate.getMonth() + 1; // 月份从 0 开始，所以要加 1
+    var day = currentDate.getDate();
+    var today = year + "/" + (month < 10 ? "0" + month : month) + "/" + (day < 10 ? "0" + day : day);
+
+    // 获取当前日期是星期几（0 表示星期日，1 表示星期一，依此类推）
+    var currentDayOfWeek = currentDate.getDay();
+    // 计算需要减去的天数来获取当前周的周一
+    var daysToSubtract = currentDayOfWeek === 0 ? 6 : currentDayOfWeek - 1;
+    // 减去天数来获取当前周的周一日期
+    var mondayDate = new Date(currentDate);
+    mondayDate.setDate(currentDate.getDate() - daysToSubtract);
+
+    var year = mondayDate.getFullYear();
+    var month = mondayDate.getMonth() + 1; // 月份从 0 开始，所以要加 1
+    var day = mondayDate.getDate();
+    var monday = year + "/" + (month < 10 ? "0" + month : month) + "/" + (day < 10 ? "0" + day : day);
+
+    console.log(today, monday)
+
+    const _ = wx.cloud.database().command;
+    wx.cloud.database().collection('focus').where(
+      _.and([{
+          Date: _.gte(monday)
+        },
+        {
+          Date: _.lte(today)
+        }
+      ])).get({
+      success: function (res) {
+        var FocusTime = res.data
+        FocusTime.sort((a, b) => new Date(a.Date) - new Date(b.Date));
+        that.setData({
+          FocusTime: FocusTime
+        })
+        //计算总专注时间
+        var TotalFocusTime = 0
+        FocusTime.forEach((obj) => {
+          TotalFocusTime += Number(obj.Hours)
+        });
+        that.setData({
+          TotalFocusTime: TotalFocusTime
+        });
+        new wxCharts({
+          canvasId: 'columnCanvas',
+          type: 'column',
+          animation: true,
+          categories: FocusTime.map(item => item.Weekday),
+          series: [{
+            name: '专注时长',
+            color: ChooseColor,
+            data: FocusTime.map(item => item.Hours).map(Number),
+            format: function (val, name) {
+              return Number(val).toFixed(1) + 'h';
+            }
+          }],
+          yAxis: {
+            format: function (val) {
+              return Number(val) + 'h';
+            },
+            min: 0,
+          },
+          xAxis: {
+            disableGrid: false,
+            type: 'calibration'
+          },
+          extra: {
+            column: {
+              width: 20
+            }
+          },
+          legend: false,
+          width: 360,
+          height: 180,
+        });
       },
       fail: function (err) {
         console.error('查询用户信息失败', err)
@@ -113,65 +187,7 @@ Page({
     this.setData({
       weekday: week[today]
     })
-
-    //计算总专注时间
-    var TotalFocusTime = 0;
-    var times = Object.values(this.data.FocusTime);
-    times.forEach(num => {
-      TotalFocusTime += num
-    })
-    this.setData({
-      TotalFocusTime: TotalFocusTime
-    });
-    //计算日程时间
-    var TodoList = this.data.TodoList
-    TodoList.forEach((value, i) => {
-      var duration = parseInt(value.Duration);
-      var hour = parseInt(value.StartTime.slice(0, -2))
-      var minute = parseInt(value.StartTime.slice(-2, ))
-      hour = (hour + duration / 60) % 24
-      minute = (minute + duration) % 60
-      var EndTime = hour + ":" + (minute + '').padStart(2, "0")
-      value.EndTime = EndTime;
-    })
-    this.setData({
-      TodoList: TodoList
-    });
-    // 柱状图
-    new wxCharts({
-      canvasId: 'columnCanvas',
-      type: 'column',
-      animation: true,
-      categories: Object.keys(this.data.FocusTime),
-      series: [{
-        name: '专注时长',
-        color: ChooseColor,
-        data: Object.values(this.data.FocusTime),
-        format: function (val, name) {
-          return val.toFixed(1) + 'h';
-        }
-      }],
-      yAxis: {
-        format: function (val) {
-          return val + 'h';
-        },
-        min: 0,
-      },
-      xAxis: {
-        disableGrid: false,
-        type: 'calibration'
-      },
-      extra: {
-        column: {
-          width: 20
-        }
-      },
-      legend: false,
-      width: 360,
-      height: 180,
-    });
   },
-
   onReady: function () {},
   /**
    * 生命周期函数--监听页面隐藏

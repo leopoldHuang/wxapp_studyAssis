@@ -90,6 +90,10 @@ Page({
   onLoad: function () {
     //从后端获取数据
     this.getdata()
+
+    // const globalData = getApp().globalData.noteData;
+    // console.log('app.js 的 globalData', globalData);
+
     // 屏幕宽度
     this.setData({
       imageWidth: wx.getSystemInfoSync().windowWidth

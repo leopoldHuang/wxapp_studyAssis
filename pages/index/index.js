@@ -18,18 +18,21 @@ Page({
     TodoList: []
   },
   //修改全局颜色
-  ChangeColor(e){
-    var app = getApp()
-    app.globalData.theme.ChooseColor=e.detail
+  ChangeColor(e) {
+    app.globalData.theme.ChooseColor = e.detail
     console.log(app.globalData.theme.ChooseColor)
     wx.reLaunch({
       url: '../index/index',
     })
   },
   onLoad: function () {
-    //从后端获取数据
-    this.getdata()
-
+    let that = this;
+    app.employIdCallback = emp => {
+      this.setData({
+        userOpenid: app.globalData.userOpenid
+      })
+      that.getdata()
+    }
     // 屏幕宽度
     this.setData({
       imageWidth: wx.getSystemInfoSync().windowWidth
@@ -49,17 +52,18 @@ Page({
     //获取日程数据
     var that = this;
     wx.cloud.database().collection('schedule').where({ //查找函数
-      _openid: getApp().globalData.userOpenid
+      _openid: this.userOpenid
     }).get({
       success: function (res) {
         var TodoList = res.data
         TodoList.forEach((value, i) => {
           value.id = i
-          value.EndHM = value.EndTime.slice(-5, );
-          value.StartHM = value.StartTime.slice(-5, );
-          value.Date = value.StartTime.slice(5, 10)
+          value.endHM = value.endTime.slice(-5, );
+          value.startHM = value.startTime.slice(-5, );
+          value.date = value.startTime.slice(5, 10)
         })
         TodoList.sort((a, b) => new Date(a.StartTime) - new Date(b.StartTime));
+        console.log(TodoList)
         that.setData({
           TodoList: TodoList
         })
@@ -88,11 +92,12 @@ Page({
     var day = mondayDate.getDate();
     var monday = year + "/" + (month < 10 ? "0" + month : month) + "/" + (day < 10 ? "0" + day : day);
 
-    console.log(today, monday)
-
     const _ = wx.cloud.database().command;
     wx.cloud.database().collection('focus').where(
       _.and([{
+          _openid: this.userOpenid
+        },
+        {
           Date: _.gte(monday)
         },
         {
@@ -174,7 +179,7 @@ Page({
   },
 
   //颜色跟随系统
-  SetColor(){
+  SetColor() {
     this.setData({
       ChooseColor: app.globalData.theme.ChooseColor,
       UnChooseColor: app.globalData.theme.UnChooseColor,

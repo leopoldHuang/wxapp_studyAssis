@@ -26,9 +26,9 @@
   <scroll-view class='Todos' scroll-y>
     <van-collapse value="{{ activeNames }}" bind:change="onChangeTodo" bind:open="onOpen" bind:close="onClose">
       <van-collapse-item wx:for="{{TodoList}}" wx:key="id" name="{{key}}">
-        <view slot="title">{{item.Name}}</view>
-        <view slot="value">{{item.Date+" "}}{{item.StartHM}}~{{item.EndHM}}</view>
-        {{item.Content}}
+        <view slot="title">{{item.name}}</view>
+        <view slot="value">{{item.date+" "}}{{item.startHM}}~{{item.endHM}}</view>
+        {{item.content}}
       </van-collapse-item>
     </van-collapse>
   </scroll-view>

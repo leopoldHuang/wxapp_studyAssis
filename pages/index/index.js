@@ -15,23 +15,17 @@ Page({
     //日程数据
     TodoList: []
   },
-  //修改全局颜色
-  ChangeColor(e) {
-    app.globalData.theme.ChooseColor = e.detail
-    console.log(app.globalData.theme.ChooseColor)
-    wx.reLaunch({
-      url: '../index/index',
-    })
-  },
-  
   onLoad: function () {
     let that = this;
-    app.employIdCallback = emp => {
-      this.setData({
-        userOpenid: app.globalData.userOpenid
-      })
-      that.getdata()
-    }
+    wx.cloud.callFunction({
+      name: 'getOpenId',
+    }).then(res => {
+      console.log(res)
+      app.globalData.userOpenid = res.result.openid
+      if (app.globalData.userOpenid) {
+        that.getdata()
+      }
+    })
     // 屏幕宽度
     this.setData({
       imageWidth: wx.getSystemInfoSync().windowWidth

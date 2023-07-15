@@ -1,2 +1,75 @@
 <!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<page-meta page-font-size="{{fontSize}}px"  root-font-size="{{fontSize}}px"	background-color="{{BackgroundColor}}"root-background-color="{{BackgroundColor}}" >
+<header Title="我的"></header>
+  <view class="page" >
+    <view class="container" >
+       <view class="userinfo">
+       <block wx:if="{{canIUseOpenData}}">
+          <view class="userinfo-avatar" bindtap="bindViewTap">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <open-data type="userNickName"></open-data>
+    </block>
+    <block wx:elif="{{!hasUserInfo}}">
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
+    </block>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+       </view>
+  <view>
+  <button class = 'btnShow' bindtap="ChangeTextAndColor">设置</button>
+    <view class="page-section" wx:if="{{isShow}}">
+    <view class="page-section-title">设置主题颜色</view>
+    <van-field
+    value="{{ value }}"
+    placeholder="请输入颜色"
+    border="{{ false }}"
+    bind:confirm="ChangeChooseColor"
+  />
+    <view class="page-section-title">设置背景颜色</view>
+    <view class="section section_gap">
+            <text class="section__title">rgb({{rgbcolor1}},,)</text>
+            <view class="body-view">
+                <slider value="{{rgbcolor1}}" bindchange="ChangeColor1" min="0" max="255" show-value/>
+            </view>
+        </view>
+        <view class="section section_gap">
+            <text class="section__title">rgb(,{{rgbcolor2}},)</text>
+            <view class="body-view">
+                <slider value="{{rgbcolor2}}" bindchange="ChangeColor2" min="0" max="255" show-value/>
+            </view>
+        </view>
+        <view class="section section_gap">
+            <text class="section__title">rgb(,,{{rgbcolor3}})</text>
+            <view class="body-view">
+                <slider value="{{rgbcolor3}}" bindchange="ChangeColor3" min="0" max="255" show-value/>
+            </view>
+        </view>
+    <text class="section__title" >改变字体大小:{{fontSize}}</text>
+            <view class="body-view">
+                <slider bindchange="ChangeText"  min="0" max="50" show-value/>
+            </view>
+    </view>
+  </view> 
+    </view>
+  <view>
+    <button bindtap="ShowApp">关于</button>
+    <page-container show="{{isShowApp}}" z-index="1" position="centers">
+      <view>
+        <text>版本信息：{{VersionValue}}</text>
+      </view>
+      <view>
+        <text>团队信息: {{TeamValue}}</text>
+      </view>
+      <view>
+        <text>功能介绍：学习辅助</text>
+      </view>
+    </page-container>
+  </view>
+  </view>
+  <navigator></navigator>
+</page-meta>

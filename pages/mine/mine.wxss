@@ -1,1 +1,29 @@
 /* pages/mine/mine.wxss */
+.page{
+    display:block;
+    min-height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
+  .userinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #aaa;
+  }
+  
+  .userinfo-avatar {
+    display: flex;
+    overflow: hidden;
+    width: 128rpx;
+    height: 128rpx;
+    margin: 20rpx;
+    border-radius: 50%;
+    margin-top: 20%;
+  }
+  .About{
+  }
+

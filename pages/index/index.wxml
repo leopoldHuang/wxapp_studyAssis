@@ -1,11 +1,5 @@
 <!--pages/index/index.wxml-->
 <header Title="主页"></header>
-<van-field
-    value="{{ value }}"
-    placeholder="请输入颜色"
-    border="{{ false }}"
-    bind:confirm="ChangeColor"
-  />
 <view class='time'>
   <view class='weekday'>
     <rich-text nodes="<h2>{{weekday}}</h2>" />

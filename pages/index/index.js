@@ -41,7 +41,7 @@ Page({
   },
   getdata() {
     console.log("获取数据接口")
-    
+
     //获取日程数据
     var that = this;
     wx.cloud.database().collection('schedule').where({ //查找函数
@@ -108,7 +108,7 @@ Page({
           TotalFocusTime += Number(obj.Hours)
         });
         that.setData({
-          TotalFocusTime: TotalFocusTime.toFixed (2)
+          TotalFocusTime: TotalFocusTime.toFixed(2)
         });
         new wxCharts({
           canvasId: 'columnCanvas',
@@ -154,16 +154,16 @@ Page({
   },
   //跳转到日程页面
   ToSchedule() {
-    wx.switchTab({
+    wx.reLaunch({
       url: '../schedule/schedule' //要跳转到的页面路径
     })
   },
-    //日程显示改变
-    onChangeTodo(event) {
-      this.setData({
-        activeNames: event.detail,
-      });
-    },
+  //日程显示改变
+  onChangeTodo(event) {
+    this.setData({
+      activeNames: event.detail,
+    });
+  },
   onOpen(event) {
     Toast(`展开: ${event.detail}`);
   },
@@ -175,7 +175,7 @@ Page({
     this.setData({
       active: event.detail,
     })
-    wx.switchTab({
+    wx.reLaunch({
       url: '../' + event.detail + '/' + event.detail //要跳转到的页面路径
     })
   },

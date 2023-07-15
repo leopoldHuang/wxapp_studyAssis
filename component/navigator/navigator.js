@@ -43,7 +43,7 @@ Component({
     },
     //底部导航改变 跳转
     onChangePage(event) {
-      wx.switchTab({
+      wx.reLaunch({
         url: '../' + event.detail + '/' + event.detail //要跳转到的页面路径
       })
     }

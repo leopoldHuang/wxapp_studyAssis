@@ -17,33 +17,16 @@ Page({
     endYear: 2050, // 最大年份
     start_time_p: '', //显示的开始时间
     end_time_p: '', //显示的结束时间
-    showIndex:null,//打开弹窗的对应下标
+    showIndex: null, //打开弹窗的对应下标
     date: util.formatTime(new Date()),
     weekday: '',
     active: "home",
     show: false,
     TodoList: [],
   },
-  
-  //底部导航改变 跳转
-  onChangePage(event) {
-    this.setData({
-      active: event.detail,
-    })
-    wx.switchTab({      
-      url: '../'+event.detail+'/'+ event.detail //要跳转到的页面路径
-  }) 
-  },
-  //侧边栏打开或关闭
-  onClose() {
-    this.setData({
-      show: !this.data.show
-    });
-  },
-onshow:function(){
-},
+  onshow: function () {},
   // 打开弹窗
-  showaddlistset(e){
+  showaddlistset(e) {
     var index = e.currentTarget.dataset.index;
     var content = e.currentTarget.dataset.content;
     var remind = e.currentTarget.dataset.remind;
@@ -52,29 +35,29 @@ onshow:function(){
     var endtime = e.currentTarget.dataset.endtime;
     var id = e.currentTarget.dataset.id;
     this.setData({
-      showIndex:index,
-      showContent:content,
-      showRemind:remind,
-      showName:name,
-      showStarttime:starttime,
-      showEndtime:endtime,
-      showId:id
+      showIndex: index,
+      showContent: content,
+      showRemind: remind,
+      showName: name,
+      showStarttime: starttime,
+      showEndtime: endtime,
+      showId: id
     })
   },
-  showaddlist(e){
+  showaddlist(e) {
     var index = e.currentTarget.dataset.index;
     this.setData({
-      showIndex:index
+      showIndex: index
     })
   },
   //关闭弹窗
-  closePopup(){
+  closePopup() {
     this.setData({
-      showIndex:null,
-      keyWord1:'',
-      keyWord2:'',
-      keyWord3:'',
-      start_time_p: '', 
+      showIndex: null,
+      keyWord1: '',
+      keyWord2: '',
+      keyWord3: '',
+      start_time_p: '',
       end_time_p: '',
     })
   },
@@ -93,125 +76,125 @@ onshow:function(){
     })
   },
   //获取输入数据(添加)
-  inputname:function(e){
+  inputname: function (e) {
     let name = e.detail.value
     this.setData({
-        keyWord1:name
+      keyWord1: name
     })
-},
-inputcontent:function(e){
-  let content = e.detail.value
-  this.setData({
-      keyWord2:content
-  })
-},
-inputremind:function(e){
-  let remind = e.detail.value
-  this.setData({
-      keyWord3:remind
-  })
-},
-  add:function(){
-    var that=this;
-    var data= {
-      content:this.data.keyWord2,
-      endTime:this.data.end_time_p.substring(0,this.data.end_time_p.lastIndexOf(":")),
-      startTime:this.data.start_time_p.substring(0,this.data.start_time_p.lastIndexOf(":")),
-      remind:this.data.keyWord3,
-      name:this.data.keyWord1
-        };
-    utils.addData("schedule",data);
-    this.setData({
-      showIndex:null,
-      keyWord1:'',
-      keyWord2:'',
-      keyWord3:'',
-      start_time_p: '', 
-      end_time_p: '',
-      showRemind:'',
-      showContent:'',
-      showName:'',
-      showEndtime:'',
-      showStarttime:'',
-    }),
-    that.onLoad()
   },
-  //删除
-  delete:function(event){
-    var that = this;
-    console.log(event.currentTarget.dataset.index);
-    utils.updateData("schedule",event.currentTarget.dataset.index,null);
-  that.onLoad()
-  },
-    //获取输入数据(修改)
-    inputnameset:function(e){
-      let name = e.detail.value
-      this.setData({
-          showName:name
-      })
-  },
-  inputcontentset:function(e){
+  inputcontent: function (e) {
     let content = e.detail.value
     this.setData({
-        showContent:content
+      keyWord2: content
     })
   },
-  inputremindset:function(e){
+  inputremind: function (e) {
     let remind = e.detail.value
     this.setData({
-        showRemind:remind
+      keyWord3: remind
+    })
+  },
+  add: function () {
+    var that = this;
+    var data = {
+      content: this.data.keyWord2,
+      endTime: this.data.end_time_p.substring(0, this.data.end_time_p.lastIndexOf(":")),
+      startTime: this.data.start_time_p.substring(0, this.data.start_time_p.lastIndexOf(":")),
+      remind: this.data.keyWord3,
+      name: this.data.keyWord1
+    };
+    utils.addData("schedule", data);
+    this.setData({
+        showIndex: null,
+        keyWord1: '',
+        keyWord2: '',
+        keyWord3: '',
+        start_time_p: '',
+        end_time_p: '',
+        showRemind: '',
+        showContent: '',
+        showName: '',
+        showEndtime: '',
+        showStarttime: '',
+      }),
+      that.onLoad()
+  },
+  //删除
+  delete: function (event) {
+    var that = this;
+    console.log(event.currentTarget.dataset.index);
+    utils.updateData("schedule", event.currentTarget.dataset.index, null);
+    that.onLoad()
+  },
+  //获取输入数据(修改)
+  inputnameset: function (e) {
+    let name = e.detail.value
+    this.setData({
+      showName: name
+    })
+  },
+  inputcontentset: function (e) {
+    let content = e.detail.value
+    this.setData({
+      showContent: content
+    })
+  },
+  inputremindset: function (e) {
+    let remind = e.detail.value
+    this.setData({
+      showRemind: remind
     })
   },
   //修改
-  modify:function(event){
+  modify: function (event) {
     console.log(this.data.showName);
     console.log(this.data.showContent);
     console.log(this.data.showRemind);
     var that = this;
-    if(this.data.end_time_p){
+    if (this.data.end_time_p) {
       this.setData({
-        showEndtime:this.data.end_time_p.substring(0,this.data.end_time_p.lastIndexOf(":")),
+        showEndtime: this.data.end_time_p.substring(0, this.data.end_time_p.lastIndexOf(":")),
       })
     }
 
-    if(this.data.start_time_p){
+    if (this.data.start_time_p) {
       this.setData({
-        showStarttime:this.data.start_time_p.substring(0,this.data.start_time_p.lastIndexOf(":")),
+        showStarttime: this.data.start_time_p.substring(0, this.data.start_time_p.lastIndexOf(":")),
       })
     }
 
-      var data ={
-        content:this.data.showContent,
-        endTime:this.data.showEndtime,
-        startTime:this.data.showStarttime,
-        remind:this.data.showRemind,
-        name:this.data.showName
-      }
-        console.log(data);
-        utils.updateData("schedule",this.data.showId,data);
-        this.setData({
-          showIndex:null,
-          showRemind:'',
-          showContent:'',
-          showName:'',
-          showEndtime:'',
-          showStarttime:'',
-          start_time_p: '',
-          end_time_p: '', 
-        })
-        that.onLoad()
+    var data = {
+      content: this.data.showContent,
+      endTime: this.data.showEndtime,
+      startTime: this.data.showStarttime,
+      remind: this.data.showRemind,
+      name: this.data.showName
+    }
+    console.log(data);
+    utils.updateData("schedule", this.data.showId, data);
+    this.setData({
+      showIndex: null,
+      showRemind: '',
+      showContent: '',
+      showName: '',
+      showEndtime: '',
+      showStarttime: '',
+      start_time_p: '',
+      end_time_p: '',
+    })
+    that.onLoad()
   },
 
   onLoad: function (options) {
 
     //罗列
-    var xxx=null;
-    var that=this;
-    utils.getData("schedule",null).then(res => {
+    var xxx = null;
+    var that = this;
+    utils.getData("schedule", null).then(res => {
       // 在 then 方法的回调函数中更新页面数据
       console.log(res)
       this.setData({
-        TodoList : res
+        TodoList: res
       });
     }).catch(err => {
       console.error('获取数据失败', err);

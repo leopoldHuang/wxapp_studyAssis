@@ -14,5 +14,6 @@
     "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index",
     "van-field": "/miniprogram_npm/vant-weapp/field/index"
   },
-  "styleIsolation": "apply-shared"
+  "styleIsolation": "apply-shared",
+  "enablePullDownRefresh": true
 }

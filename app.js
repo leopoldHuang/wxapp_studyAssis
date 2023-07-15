@@ -29,7 +29,7 @@ App({
   globalData: {
     theme: {
       //图表，按钮等选中颜色 
-      ChooseColor: 'red',
+      ChooseColor: 'blue',
       //未选中颜色
       UnChooseColor: 'grey',
       //文字选中颜色 

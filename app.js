@@ -1,27 +1,5 @@
 // app.js
 var app = getApp();
-
-function schedule_data(startTime, endTime, name, type) {
-  this.startTime = startTime;
-  this.endTime = endTime;
-  this.name = name;
-  this.type = type;
-}
-
-function focus_data(date, focusHour) {
-  this.date = date;
-  this.focusHour = focusHour;
-}
-
-function note_data(noteTime, name, content) {
-  this.noteTime = noteTime;
-  this.name = name;
-  this.content = content;
-}
-
-
-
-
 App({
   onLaunch: async function () {
     var that = this;

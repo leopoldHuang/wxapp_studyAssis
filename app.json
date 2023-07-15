@@ -4,7 +4,8 @@
     "pages/focus/focus",
     "pages/schedule/schedule",
     "pages/notebook/notebook",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/subscribe/subscribe"
   ],
   "window": {
     "backgroundTextStyle": "light",

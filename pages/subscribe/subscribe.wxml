@@ -1,0 +1,40 @@
+<!-- index.html -->
+<!-- 顶部 -->
+<view class="content">
+  <view class="head">
+    当前操作员：{{admin}}
+  </view>
+  <block wx:if="{{!hasUserInfo}}">
+    <button bindtap="getUserProfile">获取</button>
+  </block>
+  <block wx:else>
+    <form bindsubmit="formSubmit">
+      <view class="log">
+        <view class="log_title"> 
+          <text>课程类型</text>
+          <picker bindchange="changeTitle" name="title" value="{{index}}" range="{{logArray}}">
+              <view class="nowing">{{logArray[index]}}</view>
+          </picker>
+        </view>
+        
+
+        <view class="log_date">
+          <text>日期选择</text>
+          <picker mode="date" name="date" value="{{date}}" bindchange="bindDateChange">
+            <view class="nowing">{{date}}</view>   
+          </picker>
+        </view>
+        <view class="log_person">
+          <text>提醒人</text>
+          <input type="text" name="remind" bindinput="bindRemindPer" bindtap ="allowSubscribeMessage" placeholder="例如：小明(参考)" value="{{remind}}"/>
+        </view>
+        <view class="log_tip">
+          <text>温馨提示</text> 
+          <input type="text" name="tip" bindinput="bindTipCont" value="{{tip}}"/>
+        </view>
+        <button form-type="submit" disabled="{{ remind == '' ? true : false}}">发送</button>
+        <view class="errMsg">{{ remind == '' ? 'tips：需要填写提醒人名称才可发送！' : '' }}</view>
+      </view>
+    </form>
+  </block>
+</view>

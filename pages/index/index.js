@@ -49,6 +49,7 @@ Page({
   },
   getdata() {
     console.log("获取数据接口")
+    
     //获取日程数据
     var that = this;
     wx.cloud.database().collection('schedule').where({ //查找函数
@@ -115,7 +116,7 @@ Page({
           TotalFocusTime += Number(obj.Hours)
         });
         that.setData({
-          TotalFocusTime: TotalFocusTime
+          TotalFocusTime: TotalFocusTime.toFixed (2)
         });
         new wxCharts({
           canvasId: 'columnCanvas',

@@ -29,15 +29,10 @@ App({
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    wx.cloud.init({ //云开发初始化
+    //云开发初始化
+    wx.cloud.init({ 
       env: 'cloud1-6gie9r5mb33f9164',
       traceUser: true
-    })
-    // 登录 
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
     })
     //获取openid
     var that=this

@@ -1,5 +1,5 @@
-// pages/main/main.js
-var util = require('../../utils/util.js');
+// pages/main/index.js
+var util = require('../../utils/util');
 //引入wxcharts.js插件
 var wxCharts = require("../../utils/wxcharts");
 var windowW
@@ -10,8 +10,6 @@ Page({
   data: {
     date: util.formatTime(new Date()),
     weekday: '',
-    active: "home",
-    show: false,
     //总专注时长数据
     FocusTime: [],
     //日程数据
@@ -25,6 +23,7 @@ Page({
       url: '../index/index',
     })
   },
+  
   onLoad: function () {
     let that = this;
     app.employIdCallback = emp => {
@@ -156,12 +155,22 @@ Page({
       }
     })
   },
-  //日程显示改变
-  onChangeTodo(event) {
-    this.setData({
-      activeNames: event.detail,
-    });
+  //跳转到统计页面
+  ToStatistics() {
+    console.log("跳转到统计页面")
   },
+  //跳转到日程页面
+  ToSchedule() {
+    wx.switchTab({
+      url: '../schedule/schedule' //要跳转到的页面路径
+    })
+  },
+    //日程显示改变
+    onChangeTodo(event) {
+      this.setData({
+        activeNames: event.detail,
+      });
+    },
   onOpen(event) {
     Toast(`展开: ${event.detail}`);
   },

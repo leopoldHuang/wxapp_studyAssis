@@ -5,7 +5,9 @@
     "pages/schedule/schedule",
     "pages/notebook/notebook",
     "pages/mine/mine",
-    "pages/subscribe/subscribe"
+    "pages/searchQuestions/camera/camera",
+    "pages/searchQuestions/result/result",
+    "pages/focusHistory/focusHistory"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,7 +20,8 @@
     "color": "#000000",
     "selectedColor": "#000000",
     "backgroundColor": "#000000",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index"
       },
       {

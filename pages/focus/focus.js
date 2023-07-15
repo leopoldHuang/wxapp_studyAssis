@@ -56,12 +56,29 @@ Page({
       return; // 如果没有正在计时，不执行操作
     }
     clearInterval(this.data.timer);
-    this.setData({
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-      isTiming: false,
-      duration: `${this.data.hours}小时 ${this.data.minutes}分钟 ${this.data.seconds}秒`
+    const { hours, minutes, seconds } = this.data; // 获取当前数据中的小时、分钟和秒数
+    if (hours === 0 && minutes === 0 && seconds <= 5) {
+      this.setData({
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        isTiming: false,
+        duration: '专注时间不足5秒，不进行录入！'
+      });
+    } else {
+      this.setData({
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        isTiming: false,
+        duration: `${hours}小时 ${minutes}分钟 ${seconds}秒`
+      });
+    }
+  },
+
+  redirectToHistory() {
+    wx.navigateTo({
+      url: '/pages/focusHistory/focusHistory',
     });
   },
 
@@ -86,7 +103,6 @@ Page({
   onShow() {
 
   },
-
 
 
   /**

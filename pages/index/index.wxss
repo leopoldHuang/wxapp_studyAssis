@@ -1,29 +1,4 @@
-.sidecontent{
-  height: 750rpx;
-  width: 50%;
-  margin-right: 0%;
-}
-.head{
-  margin-top: 10rpx;
-  width: 100%;
-  height: 90rpx;
-  display: flex;
-  justify-content: space-around;
-}
-.head view{
-  text-align: center;
-}
-image {
-  text-align: center;
-  margin-top: 25%;
-	width: 60rpx;
-	height: 50rpx;
-}
-.divLine{
-  background: #E0E3DA;
-  width: 100%;
-  height: 3rpx;
- }
+/* pages/index/index.wxss */
 
 .time {
   margin: 20rpx 30rpx 10rpx 30rpx;
@@ -64,27 +39,6 @@ image {
   width: 100%;
 }
 
-.start {
-  background-color: red;
-  color: white;
-  height: 120rpx;
-  margin-bottom: 50rpx;
-  text-align: center;
-  line-height: 60rpx;
-  width: 100%;
-  margin-left: 0%;
-}
-
 canvas {
   width: 100%;
-}
-
-.start {
-  padding-top: 4rpx;
-  padding-bottom: 10rpx;
-  z-index: 1;
-}
-
-.placeholder{
-  height: 150rpx;
 }

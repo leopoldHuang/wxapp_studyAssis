@@ -1,0 +1,15 @@
+<!--pages/focusHistory/focusHistory.wxml-->
+<header Title="专注历史"></header>
+<view>
+  <view class="text">本周您已专注了</view>
+
+  <view class="text">总计专注时长</view>
+
+  <view class='ForceTime' bindtap="ToStatistics">
+    <view class='SubTitle'>
+      <rich-text nodes="<h3>{{TotalFocusTime}}h</h3>" />
+    </view>
+    <canvas canvas-id="columnCanvas" disable-scroll="true" class="ForceTimeChart"></canvas>
+  </view>
+</view>
+

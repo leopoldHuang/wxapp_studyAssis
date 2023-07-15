@@ -13,6 +13,18 @@ App({
       env: 'cloud1-6gie9r5mb33f9164',
       traceUser: true
     })
+    wx.cloud.init({//云开发初始化
+      env: 'cloud1-6gie9r5mb33f9164',
+      traceUser: true
+    })
+
+    // 登录 
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        
+      }
+    })
   },
   globalData: {
     theme: {

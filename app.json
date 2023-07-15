@@ -5,8 +5,6 @@
     "pages/schedule/schedule",
     "pages/notebook/notebook",
     "pages/mine/mine",
-    "pages/searchQuestions/camera/camera",
-    "pages/searchQuestions/result/result",
     "pages/focusHistory/focusHistory"
   ],
   "window": {

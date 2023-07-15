@@ -1,7 +1,8 @@
-{
-  "usingComponents": {
-    "header":"/component/header/header",
-    "navigator":"/component/navigator/navigator"
-    },
-    "styleIsolation": "apply-shared"
-}
+
+  {
+    "usingComponents": {
+      "header":"/component/header/header",
+      "navigator":"/component/navigator/navigator"
+      },
+      "styleIsolation": "apply-shared"
+  }

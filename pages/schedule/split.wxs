@@ -1,0 +1,27 @@
+var subStr = function (val) {
+    if (val) {
+        return val.substring(val.indexOf(" "), val.length)
+    } else {
+        return ''
+    }
+}
+var subTime = function (val){
+    if (val) {
+        return val.substring(0,val.lastIndexOf(":"))
+    } else {
+        return ''
+    }
+}
+var subDate = function (val){
+    if (val) {
+        return val.substring(0,val.lastIndexOf(" "))
+    } else {
+        return ''
+    }
+}
+
+module.exports = {
+    subStr: subStr,
+    subTime: subTime,
+    subDate: subDate
+};

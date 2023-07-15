@@ -20,7 +20,6 @@ Page({
     wx.cloud.callFunction({
       name: 'getOpenId',
     }).then(res => {
-      console.log(res)
       app.globalData.userOpenid = res.result.openid
       if (app.globalData.userOpenid) {
         that.getdata()

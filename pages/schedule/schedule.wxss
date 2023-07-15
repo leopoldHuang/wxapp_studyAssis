@@ -41,6 +41,7 @@
     border:none;
 }
 .screen button.listall{
+    margin-left: 20px;
     color: rgb(0, 0, 0);
     border: 1px solid #000000; 
     border-radius: 2px;  
@@ -65,7 +66,12 @@
     position: relative;
     width: 100%;
     height: 200rpx;
-    margin-top: 15px;
+    margin-top: 30px;
+}
+.task view.date{
+  position: absolute; /* 相对relative也可以 */
+  margin-left:10px;
+  margin-top:-110px;
 }
 .task view.point{
     font-size: 70px;
@@ -97,10 +103,168 @@
   margin-top: 6px;
   color:darkgray;
 }
+image.setting{
+  position: absolute; /* 相对relative也可以 */
+  right: 0; /* 靠右调节 */
+  margin-right: 110rpx;
+  margin-top: -10px;
+}
 image.trash{
   position: absolute; /* 相对relative也可以 */
   right: 0; /* 靠右调节 */
   margin-right: 35rpx;
   margin-top: -10px;
 }
- 
+
+.staybutton{
+  bottom: 60px;
+  right:13px;
+  position: fixed;
+  z-index: 1;
+}
+
+button.addtodo{
+  background-color: rgb(7, 121, 214);
+  border-radius: 100%;
+  color:white;
+  height:fit-content;
+  width:fit-content;
+  float:right;
+}
+
+.popup-box{
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+  }
+/* 弹窗 */
+  .info-center{
+    position: fixed;
+    z-index: 999;
+    background-color: white;
+    display: flex;
+    border-radius: 10rpx;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  view.addtitle{
+    position: absolute;
+    left:32%;
+    top:5px;
+    font-size: 25px;
+  }
+/* 名称 */
+  view.addtext{
+    position: absolute;
+    left:5px;
+    top:40px;
+    font-size: 20px;
+  }
+/* 输入框 */
+  input.inputname{
+    position: absolute;
+    top:42px;
+    left:54px;
+    border: 1px solid rgb(187, 187, 187); 
+  }
+/* 内容 */
+view.content{
+  font-size: 20px;
+}
+/* 内容输入框 */
+input.inputcontent{
+  position: absolute;
+  top:142px;
+  left:54px;
+  width:60%;
+  border: 1px solid rgb(187, 187, 187); 
+}
+/* 提醒时间 */
+view.remind{
+  font-size: 20px;
+}
+input.inputremind{
+  position: absolute;
+  width:20%;
+  top:170px;
+  left:100px;
+  border: 1px solid rgb(187, 187, 187); 
+}
+view.min{
+  position: absolute;
+  top:170px;
+  left:170px;
+}
+/* 确认取消按钮 */
+.row-btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-top: 1rpx dashed #f1f1f1;
+    margin-top: 2%;
+  }
+.left-btn{
+    margin-left: 10%;
+    width:40px;
+    background-color: #f1f1f1;
+    color: #33ccff;
+}
+.right-btn{
+    margin-left: 50%;
+    background-color: #33ccff;
+    color: white;
+  }
+
+  /* 时间选择器 */
+  .act_item {
+    width: 650rpx;
+    background: #FFFFFF;
+    border-radius: 16rpx;
+    margin-bottom: -10rpx;
+    box-sizing: border-box;
+    padding: 24rpx;
+    position: relative;
+    font-size: 28rpx;
+    color: #4D4D4D;
+    font-weight: 500;
+  }
+   
+  .require {
+    color: #E9543E;
+  }
+   
+  .nowp {
+    white-space: nowrap;
+    margin-right: 15rpx;
+  }
+   
+  .act_right {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -10px;
+    font-size: 28rpx;
+    color: #999;
+  }
+   
+  .act_item picker {
+    flex: 1;
+    margin-left: 40rpx;
+  }
+   
+  .act_box {
+    margin: 160rpx auto;
+    width: 650rpx;
+  }
+   
+  .sel_text {
+    font-size: 28rpx;
+    font-weight: 500;
+    color: #4D4D4D;
+  }
+
+  

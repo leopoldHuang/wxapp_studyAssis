@@ -28,6 +28,10 @@
     margin-top: 20rpx;
     padding: 0 0 0 0;
     margin-left: 30rpx;
+    font-size: 30rpx;
     background-color: #FFFFFF;
+}
+picker-view-column {
+  font-size: 28rpx;
 }
 

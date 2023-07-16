@@ -25,8 +25,8 @@
     <view class="page-section" wx:if="{{isShow}}">
       <view class="page-section-title">设置主题颜色</view>
       <view class="section">
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{colors}}">
-    <view class="picker" style="color:{{ChooseColor}}">
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{names}}">
+    <view class="picker" style="color:{{ChooseColor}};">
       选择颜色：{{names[index]}}
     </view>
   </picker>

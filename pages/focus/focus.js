@@ -1,4 +1,8 @@
 var app = getApp();
+// pages/focus/focus.js
+var util = require('../../utils/util');
+const { addData } = require('../../utils/utilsFunction');
+
 Page({
 
   /**
@@ -13,6 +17,7 @@ Page({
     UnchooseFontColor: app.globalData.theme.UnchooseFontColor,
     BorderColor: app.globalData.theme.BorderColor,
 
+    time: 0, // 总时长
     hours: 0, // 小时
     minutes: 0, // 分钟
     seconds: 0, // 秒
@@ -20,6 +25,9 @@ Page({
     isTiming: false, // 是否正在计时
     duration: '' // 本次计时的时长
   },
+
+
+
   startTiming() {
     if (this.data.isTiming) {
       return; // 如果正在计时，不执行操作
@@ -32,9 +40,9 @@ Page({
       let hours = this.data.hours;
       let minutes = this.data.minutes;
       let seconds = this.data.seconds + 1;
-
-      if (seconds >= 60) {
-        seconds = 0;
+                            //                            ！！！！！！！！！！！！！
+      if (seconds >= 60) {   // ！！！！！！！！！！！！！！！！  ← 这里记得改回60  ！！！！！！！！！！！！！！！！！！
+        seconds = 0;        //                            ！！！！！！！！！！！！！
         minutes += 1;
       }
 
@@ -57,12 +65,19 @@ Page({
     }
     clearInterval(this.data.timer);
     const { hours, minutes, seconds } = this.data; // 获取当前数据中的小时、分钟和秒数
+
+    function limitFloatNumber(value, decimals) {
+      return Number(value).toFixed(decimals);
+    }
+
+    const time = limitFloatNumber( hours + minutes / 60 + seconds / 3600, 2);
     if (hours === 0 && minutes === 0 && seconds <= 5) {
       this.setData({
         hours: 0,
         minutes: 0,
         seconds: 0,
         isTiming: false,
+        time: 0,
         duration: '专注时间不足5秒，不进行录入！'
       });
     } else {
@@ -70,10 +85,24 @@ Page({
         hours: 0,
         minutes: 0,
         seconds: 0,
+        time: 0,
         isTiming: false,
-        duration: `${hours}小时 ${minutes}分钟 ${seconds}秒`
+        duration: `${hours}小时 ${minutes}分钟 ${seconds}秒`,
       });
+
+      var currentDate = new Date();
+      var weekdayAbbreviations = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      var data = {
+        Hours: time,
+        Date: currentDate.toLocaleDateString(),
+        Weekday: weekdayAbbreviations[currentDate.getDay()]
+      };
+      console.log(data);
+      addData('focus', data); // 调用上传数据库的函数，并传递数据库名和数据
+
     }
+    
+
   },
 
   redirectToHistory() {

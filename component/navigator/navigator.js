@@ -1,5 +1,5 @@
 // component/navigator/navigator.js
-var app=getApp();
+
 Component({
   /**
    * 组件的属性列表
@@ -13,26 +13,18 @@ Component({
   data: {
     active: "index"
   },
-
   /**
    * 组件的方法列表
    */
-    //颜色跟随系统
+  //颜色跟随系统
   attached() {
     this.PathChange()
-    this.SetColor()
+    var app=getApp()
+    this.setData({
+      ChooseColor: app.globalData.theme.ChooseColor,
+    })
   },
   methods: {
-    //颜色
-    SetColor(){
-      this.setData({
-        ChooseColor: app.globalData.theme.ChooseColor,
-        UnChooseColor: app.globalData.theme.UnChooseColor,
-        ChooseFontColor: app.globalData.theme.ChooseFontColor,
-        UnchooseFontColor: app.globalData.theme.UnchooseFontColor,
-        BorderColor: app.globalData.theme.BorderColor,
-      })
-    },
     //根据路径设置底部导航栏显示
     PathChange() {
       var pages = getCurrentPages();

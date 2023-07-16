@@ -1,139 +1,142 @@
 <!--pages/schedule/schedule.wxml-->
 <wxs src="../schedule/split.wxs" module="tools" />
 <header Title="日程"></header>
-<view class="divLine"></view>
 <view class="schedule">
-<rich-text nodes="<h2>日程<h2>"></rich-text>
+  <rich-text nodes="<h2>日程<h2>"></rich-text>
 </view>
 <view class="screen">
-<button class="listall" bindtap="all">ALL</button>
+  <button class="listall" bindtap="all" style="background-color: {{ChooseColor}};color: white;">ALL</button>
 </view>
+
 <form class="task">
-<view class="item" wx:for='{{TodoList}}'>
-<view class="date">start:{{tools.subDate(item.startTime)}}</view>
-<view class="point">·
-</view>
-<view class="item-time">
-  {{tools.subStr(item.startTime)}}<view>~</view><view>{{tools.subStr(item.endTime)}}
-</view>
-</view>
-<view class="line"></view>
-<view>
-<view class="thing">{{item.name}}</view>
-<view class="attribute">{{item.content}}</view>
-</view>
-<view>
-  <image src="../../images/setting.jpg" mode="scaleToFill" class="setting" bindtap="showaddlistset" data-index="0" data-content="{{item.content}}" data-name="{{item.name}}" data-remind="{{item.remind}}" data-starttime="{{item.startTime}}" data-endtime="{{item.endTime}}" data-id="{{item._id}}" data-remindable="{{item.remindable}}"></image>
-</view>
-<view>
-<image src="../../images/dustbin.jpg" mode="scaleToFill" class="trash" bindtap="delete" data-index="{{item._id}}"></image>
-</view>
-</view>
+  <view class="item" wx:for='{{TodoList}}' style="border-color: {{ChooseColor}};">
+    <view class="date">{{tools.subDate(item.startTime)}}</view>
+    <view class='taskone'> 
+      <view class="point" style="background-color: {{ChooseColor}};">
+    </view>
+    <view class="item-time">
+      {{tools.subStr(item.startTime)}}<view>~</view>
+      <view>{{tools.subStr(item.endTime)}}
+      </view>
+    </view>
+    <view class="line"></view>
+    <view style="width: 60%;">
+      <scroll-view class="thing" scroll-y ="true">{{item.name}}</scroll-view >
+      <scroll-view  class="attribute" scroll-y ="true">{{item.content}}</scroll-view >
+    </view>
+    <view style="display: flex;flex-direction: column;margin-left: 5%;"> 
+      <view>
+      <image src="../../images/setting.jpg" mode="scaleToFill" class="setting" bindtap="showaddlistset" data-index="0" data-content="{{item.content}}" data-name="{{item.name}}" data-remind="{{item.remind}}" data-starttime="{{item.startTime}}" data-endtime="{{item.endTime}}" data-id="{{item._id}}" data-remindable="{{item.remindable}}"></image>
+    </view>
+    <view>
+      <image src="../../images/dustbin.jpg" mode="scaleToFill" class="trash" bindtap="delete" data-index="{{item._id}}"></image>
+    </view>
+    </view>
+    </view>
+  </view>
 </form>
 <view class="staybutton">
-  <button class="addtodo" bindtap="showaddlist" data-index="1">+</button>
+  <button class="addtodo" bindtap="showaddlist" data-index="1" style="background-color: {{ChooseColor}};">+</button>
 </view>
 <!-- 弹窗 -->
-<view class="popup-box" wx:if="{{showIndex=='1'}}" bindtap="closePopup"></view> 
-<view class="info-center" style="top:{{height*0.3}}px;height:{{height*0.48}}px;"
-wx:if="{{showIndex=='1'}}">
+<view class="popup-box" wx:if="{{showIndex=='1'}}" bindtap="closePopup"></view>
+<view class="info-center" style="top:{{height*0.3}}px;height:{{height*0.48}}px;" wx:if="{{showIndex=='1'}}">
   <view>
-  <view class="addtitle">添加日程</view>
-  <view class="addtext">名称:</view>
-  <input class="inputname" placeholder="请输入名称"  value="{{keyWord1}}" bindinput="inputname" confirm-type="send"></input>
+    <view class="addtitle">添加日程</view>
+    <view class="addtext">名称:</view>
+    <input class="inputname" placeholder="请输入名称" value="{{keyWord1}}" bindinput="inputname" confirm-type="send"></input>
   </view>
   <view class="act_box">
-  <view class="act_item flex j_b">
-    <view class="nowp"><text class="require">*</text>
-      开始时间：
-    </view>
-    <picker mode="multiSelector" value="{{start_time}}" data-type="start_time" data-param='start_time_p' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
-      <view class="flex-row act_right">
-        <text wx:if="{{!start_time_p}}">请选择</text>
-        <text wx:else class="sel_text">{{tools.subTime(start_time_p)}}</text>
+    <view class="act_item flex j_b">
+      <view class="nowp"><text class="require">*</text>
+        开始时间：
       </view>
-    </picker>
-  </view>
-  <view class="act_item flex j_b">
-    <view class="nowp"><text class="require">*</text>
-      结束时间：
+      <picker mode="multiSelector" value="{{start_time}}" data-type="start_time" data-param='start_time_p' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+        <view class="flex-row act_right">
+          <text wx:if="{{!start_time_p}}">请选择</text>
+          <text wx:else class="sel_text">{{tools.subTime(start_time_p)}}</text>
+        </view>
+      </picker>
     </view>
-    <picker mode="multiSelector" value="{{end_time}}" data-type="end_time" data-param='end_time_p' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
-      <view class="flex-row act_right">
-        <text wx:if="{{!end_time_p}}">请选择</text>
-        <text wx:else class="sel_text">{{tools.subTime(end_time_p)}}</text>
+    <view class="act_item flex j_b">
+      <view class="nowp"><text class="require">*</text>
+        结束时间：
       </view>
-    </picker>
-  </view>
-  <view class="content">
-   <view>内容:</view>
-   <input class="inputcontent" placeholder="请输入内容" value="{{keyWord2}}" bindinput="inputcontent" confirm-type="send"></input>
-  </view>
-  <view class="remind">
-  提醒时间：
-  <input class="inputremind" value="{{keyWord3}}" bindinput="inputremind" confirm-type="send"></input>
-  <view class="min">min</view>
-  <view bindtap="check">
-  <radio class="remindable" checked="{{check}}">是否提醒</radio>
-  </view>
-  </view>
-  <view class="row-btn">
-      <view class="left-btn" bindtap="closePopup">取消</view>
-      <view class="right-btn" bindtap="add">确认</view>
+      <picker mode="multiSelector" value="{{end_time}}" data-type="end_time" data-param='end_time_p' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+        <view class="flex-row act_right">
+          <text wx:if="{{!end_time_p}}">请选择</text>
+          <text wx:else class="sel_text">{{tools.subTime(end_time_p)}}</text>
+        </view>
+      </picker>
     </view>
-</view>
+    <view class="content">
+      <view>内容:</view>
+      <input class="inputcontent" placeholder="请输入内容" value="{{keyWord2}}" bindinput="inputcontent" confirm-type="send"></input>
+    </view>
+    <view class="remind">
+      提醒时间：
+      <input class="inputremind" value="{{keyWord3}}" bindinput="inputremind" confirm-type="send"></input>
+      <view class="min">min</view>
+      <view bindtap="check">
+        <radio class="remindable" checked="{{check}}">是否提醒</radio>
+      </view>
+    </view>
+    <view class="row-btn">
+      <view class="left-btn" bindtap="closePopup" style="background-color: {{ChooseColor}};">取消</view>
+      <view class="right-btn" bindtap="add" style="background-color: {{ChooseColor}};">确认</view>
+    </view>
+  </view>
 
 </view>
 
 <!-- 修改弹窗 -->
-<view class="popup-box" wx:if="{{showIndex=='0'}}" bindtap="closePopup"></view> 
-<view class="info-center" style="top:{{height*0.3}}px;height:{{height*0.48}}px;"
-wx:if="{{showIndex=='0'}}">
+<view class="popup-box" wx:if="{{showIndex=='0'}}" bindtap="closePopup"></view>
+<view class="info-center" style="top:{{height*0.3}}px;height:{{height*0.48}}px;" wx:if="{{showIndex=='0'}}">
   <view>
-  <view class="addtitle">修改日程</view>
-  <view class="addtext">名称:</view>
-  <input class="inputname"  value="{{showName}}" bindinput="inputnameset" confirm-type="send"></input>
+    <view class="addtitle">修改日程</view>
+    <view class="addtext">名称:</view>
+    <input class="inputname" value="{{showName}}" bindinput="inputnameset" confirm-type="send"></input>
   </view>
   <view class="act_box">
-  <view class="act_item flex j_b">
-    <view class="nowp"><text class="require">*</text>
-      开始时间：
-    </view>
-    <picker mode="multiSelector" value="{{start_time}}" data-type="start_time" data-param='start_time_p' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
-      <view class="flex-row act_right">
-        <text wx:if="{{!start_time_p}}">{{showStarttime}}</text>
-        <text wx:else class="sel_text">{{tools.subTime(start_time_p)}}</text>
+    <view class="act_item flex j_b">
+      <view class="nowp"><text class="require">*</text>
+        开始时间：
       </view>
-    </picker>
-  </view>
-  <view class="act_item flex j_b">
-    <view class="nowp"><text class="require">*</text>
-      结束时间：
+      <picker mode="multiSelector" value="{{start_time}}" data-type="start_time" data-param='start_time_p' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+        <view class="flex-row act_right">
+          <text wx:if="{{!start_time_p}}">{{showStarttime}}</text>
+          <text wx:else class="sel_text">{{tools.subTime(start_time_p)}}</text>
+        </view>
+      </picker>
     </view>
-    <picker mode="multiSelector" value="{{end_time}}" data-type="end_time" data-param='end_time_p' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
-      <view class="flex-row act_right">
-        <text wx:if="{{!end_time_p}}">{{showEndtime}}</text>
-        <text wx:else class="sel_text">{{tools.subTime(end_time_p)}}</text>
+    <view class="act_item flex j_b">
+      <view class="nowp"><text class="require">*</text>
+        结束时间：
       </view>
-    </picker>
-  </view>
-  <view class="content">
-   <view>内容:</view>
-   <input class="inputcontent" placeholder="请输入内容" value="{{showContent}}" bindinput="inputcontentset" confirm-type="send"></input>
-  </view>
-  <view class="remind">
-  提醒时间：
-  <input class="inputremind" value="{{showRemind}}" bindinput="inputremindset" confirm-type="send"></input>
-  <view class="min">min</view>
-  <view bindtap="check">
-  <radio class="remindable" checked="{{check}}">是否提醒</radio>
-  </view>
-  </view>
-  <view class="row-btn">
+      <picker mode="multiSelector" value="{{end_time}}" data-type="end_time" data-param='end_time_p' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+        <view class="flex-row act_right">
+          <text wx:if="{{!end_time_p}}">{{showEndtime}}</text>
+          <text wx:else class="sel_text">{{tools.subTime(end_time_p)}}</text>
+        </view>
+      </picker>
+    </view>
+    <view class="content">
+      <view>内容:</view>
+      <input class="inputcontent" placeholder="请输入内容" value="{{showContent}}" bindinput="inputcontentset" confirm-type="send"></input>
+    </view>
+    <view class="remind">
+      提醒时间：
+      <input class="inputremind" value="{{showRemind}}" bindinput="inputremindset" confirm-type="send"></input>
+      <view class="min">min</view>
+      <view bindtap="check">
+        <radio class="remindable" checked="{{check}}">是否提醒</radio>
+      </view>
+    </view>
+    <view class="row-btn">
       <view class="left-btn" bindtap="closePopup">取消</view>
       <view class="right-btn" bindtap="modify">确认</view>
     </view>
-</view>
+  </view>
 
 </view>
 

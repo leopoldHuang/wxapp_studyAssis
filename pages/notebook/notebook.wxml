@@ -1,2 +1,36 @@
 <!--pages/notebook/notebook.wxml-->
-<text>pages/notebook/notebook.wxml</text>
+
+<header></header>
+
+<view class="divLine"></view>
+
+<view>
+    <van-search
+        value="{{ keyword }}"
+        placeholder="请输入搜索关键词"
+        use-action-slot
+        bind:change="SearchKey">
+        <view slot="action" bind:tap="Filters">搜索</view>
+    </van-search>
+</view>
+
+<view class="divLine"></view>
+
+<view style="height: 370px;">
+  <van-cell-group wx:for="{{ShowNotebooks}}" wx:key="_id" name="{{key}}">
+    <van-cell 
+      title="{{item.title}}"  
+      label="{{item.date}}" 
+      border="{{ false }}"
+      data-saveid="{{item._id}}"
+      data-savetitle="{{item.title}}"
+      data-savecontent="{{item.content}}"
+      bind:click="ToNotebook1"
+      bindlongtap="delete">
+    </van-cell>
+  </van-cell-group>
+</view>
+
+<van-button color="{{ChooseColor}}" round icon="plus"  bind:click="ToNotebook2"/>
+
+<navigator></navigator>

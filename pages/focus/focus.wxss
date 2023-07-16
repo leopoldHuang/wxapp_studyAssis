@@ -18,18 +18,11 @@
 .stop-button {
   width: 200px;
   height: 40px;
-  background-color: #c30000;
   color: #fff;
   border: none;
   border-radius: 20px;
   margin-bottom: 10px;
   top: 20%;
-}
-
-
-.start-button:active,
-.stop-button:active{
-  background-color: #740000;
 }
 
 .duration {

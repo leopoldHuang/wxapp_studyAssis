@@ -1,280 +1,273 @@
-/* pages/schedule/schedule.wxss */
-.sidecontent{
-  height: 750rpx;
-  width: 50%;
-  margin-right: 0%;
-}
-.head{
-  margin-top: 10rpx;
-  width: 100%;
-  height: 90rpx;
-  display: flex;
-  justify-content: space-around;
-}
-.divLine{
-  background: #E0E3DA;
-  width: 100%;
-  height: 3rpx;
- }
-
 .schedule {
-  margin: 20rpx 30rpx 10rpx 30rpx;
+  align-items: center;
+  height: 70rpx;
+  margin-left: 3%;
 }
-.screen{
-  display : flex;
+
+.listall {
+  width: 15%;
+  margin-left: 3%;
+}
+
+.task {
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 90rpx;
-}
-.screen button{
-    background: rgb(255, 255, 255);
-    height:fit-content;
-    width:fit-content;
-}
-.screen button.list2{
-    color: rgb(107, 107, 107);
-    border: 1px solid rgb(187, 187, 187); 
-    border-radius: 2px; 
-    font-size: 30rpx;
+  height: 200rpx;
+  margin-top: 15rpx;
+  border: 4rpx solid;
+  border-radius: 10rpx;
+  display: flex;
 }
 
-.screen button.list2::after{
-    border:none;
-}
-.screen button.listall{
-    margin-left: 20px;
-    color: rgb(0, 0, 0);
-    border: 1px solid #000000; 
-    border-radius: 2px;  
-    font-size: 30rpx;
-}
-.screen button.listall::after{
-    border:none;
-}
-.screen button.list1{
-    color: rgb(107, 107, 107);
-    border: 1px solid rgb(187, 187, 187); 
-    border-radius: 2px;  
-    font-size: 30rpx;
-}
-.screen button.list1::after{
-    border:none;
+.taskone {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-right: 0%;
 }
 
-.task view.item{
-    display : flex;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    height: 200rpx;
-    margin-top: 30px;
+.date {
+  margin-left: 1%;
+  font-size: 90%;
 }
-.task view.date{
-  position: absolute; /* 相对relative也可以 */
-  margin-left:10px;
-  margin-top:-110px;
+
+.point {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 8%;
+  margin-left: 1%;
+  background: blue;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 15px;
 }
-.task view.point{
-    font-size: 70px;
-    display : flex;
-    align-items: center;
-    margin-left:20px;
+
+.item-time {
+  text-align: center;
+  font-size: 19px;
+  display: flex;
+  flex-direction: column;
 }
-.task view.item-time{
-    text-align: center;
-    font-size:23px;
+
+.line {
+  float: left;
+  margin-top: 0rpx;
+  margin-left: 30rpx;
+  width: 1px;
+  height: 100%;
+  background: rgb(255, 255, 255);
+  border-left: 3px darkgray;
+  border-left-style: dotted;
 }
-.task view.line{
-    float:left;
-    margin-top:5rpx;
-    margin-left:20rpx;
-    width: 1px;
-    height: 200rpx;
-    background: rgb(255, 255, 255);
-    border-left:3px darkgray;
-    border-left-style: dotted;
+
+.thing {
+  overflow-y: hidden;
+  height: 80rpx;
+  margin-top: -10rpx;
+  margin-left: 10rpx;
+  font-size: 24px;
 }
-.task view.thing{
-  font-size: 30px;
-  margin-top: 8px;
+
+.attribute {
+  height: 55rpx;
+  overflow-y: hidden;
   margin-left: 10px;
-}
-.task view.attribute{
-  margin-left: 10px;
-  margin-top: 6px;
-  color:darkgray;
-}
-image.setting{
-  position: absolute; /* 相对relative也可以 */
-  right: 0; /* 靠右调节 */
-  margin-right: 110rpx;
-  margin-top: -10px;
-}
-image.trash{
-  position: absolute; /* 相对relative也可以 */
-  right: 0; /* 靠右调节 */
-  margin-right: 35rpx;
-  margin-top: -10px;
+  margin-top: 12px;
+  color: darkgray;
 }
 
-.staybutton{
+image.setting {
+  margin-right: 0%;
+  margin-top: 0%;
+}
+
+image.trash {
+  margin-right: 0%;
+  margin-top: 30%;
+}
+
+.staybutton {
   bottom: 60px;
-  right:13px;
+  right: 13px;
   position: fixed;
   z-index: 1;
 }
 
-button.addtodo{
-  background-color: rgb(7, 121, 214);
+button.addtodo {
   border-radius: 100%;
-  color:white;
-  height:fit-content;
-  width:fit-content;
-  float:right;
+  color: white;
+  height: fit-content;
+  width: fit-content;
+  float: right;
   margin-bottom: 50%;
 }
 
-.popup-box{
-    position: fixed;
-    z-index: 99;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-  }
-/* 弹窗 */
-  .info-center{
-    position: fixed;
-    z-index: 999;
-    background-color: white;
-    display: flex;
-    border-radius: 10rpx;
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
+.popup-box {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+}
 
-  view.addtitle{
-    position: absolute;
-    left:32%;
-    top:5px;
-    font-size: 25px;
-  }
+/* 弹窗 */
+.info-center {
+  position: fixed;
+  z-index: 999;
+  background-color: white;
+  display: flex;
+  border-radius: 10rpx;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+view.addtitle {
+  position: absolute;
+  left: 32%;
+  top: 5px;
+  font-size: 25px;
+}
+
 /* 名称 */
-  view.addtext{
-    position: absolute;
-    left:5px;
-    top:40px;
-    font-size: 20px;
-  }
+view.addtext {
+  position: absolute;
+  left: 5px;
+  top: 40px;
+  font-size: 20px;
+}
+
 /* 输入框 */
-  input.inputname{
-    position: absolute;
-    top:42px;
-    left:54px;
-    width:60%;
-    border: 1px solid rgb(187, 187, 187); 
-  }
+input.inputname {
+  position: absolute;
+  top: 42px;
+  left: 54px;
+  width: 60%;
+  border: 1px solid rgb(187, 187, 187);
+}
+
 /* 内容 */
-view.content{
+view.content {
   margin-top: 4%;
   font-size: 20px;
 }
+
 /* 内容输入框 */
-input.inputcontent{
+input.inputcontent {
   position: absolute;
   margin-top: -7%;
-  margin-left:16%;
-  width:60%;
-  border: 1px solid rgb(187, 187, 187); 
+  margin-left: 16%;
+  width: 60%;
+  border: 1px solid rgb(187, 187, 187);
 }
+
 /* 提醒时间 */
-view.remind{
+view.remind {
   margin-top: 3%;
   font-size: 20px;
 }
-input.inputremind{
+
+input.inputremind {
   position: absolute;
-  width:20%;
-  margin-top:-7%;
-  margin-left:32%;
-  border: 1px solid rgb(187, 187, 187); 
+  width: 20%;
+  margin-top: -7%;
+  margin-left: 32%;
+  border: 1px solid rgb(187, 187, 187);
 }
-view.min{
+
+view.min {
   position: absolute;
-  margin-top:-6%;
-  margin-left:55%;
+  margin-top: -6%;
+  margin-left: 55%;
 }
-radio.remindable{
+
+radio.remindable {
   position: absolute;
   font-size: 12px;
-  margin-top:-6%;
-  margin-left:70%;
+  margin-top: -6%;
+  margin-left: 70%;
 }
+
 /* 确认取消按钮 */
-.row-btn{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border-top: 1rpx dashed #f1f1f1;
-    margin-top:4%;
-  }
-.left-btn{
-    margin-left: 10%;
-    width:40px;
-    background-color: #f1f1f1;
-    color: #33ccff;
+.row-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1rpx dashed #f1f1f1;
+  margin-top: 4%;
 }
-.right-btn{
-    margin-left: 50%;
-    background-color: #33ccff;
-    color: white;
-  }
 
-  /* 时间选择器 */
-  .act_item {
-    width: 650rpx;
-    background: #FFFFFF;
-    border-radius: 16rpx;
-    margin-bottom: -10rpx;
-    box-sizing: border-box;
-    padding: 24rpx;
-    position: relative;
-    font-size: 28rpx;
-    color: #4D4D4D;
-    font-weight: 500;
-  }
-   
-  .require {
-    color: #E9543E;
-  }
-   
-  .nowp {
-    white-space: nowrap;
-    margin-right: 15rpx;
-  }
-   
-  .act_right {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: -16px;
-    font-size: 28rpx;
-    color: #999;
-  }
-   
-  .act_item picker {
-    flex: 1;
-    margin-left: 40rpx;
-  }
-   
-  .act_box {
-    margin: 160rpx auto;
-    width: 650rpx;
-  }
-   
-  .sel_text {
-    font-size: 28rpx;
-    font-weight: 500;
-    color: #4D4D4D;
-  }
+.left-btn {
+  margin-left: 10%;
+  width: 80rpx;
+  text-align: center;
+  border: 10rpx solid ;
+  border-radius: 10%;
+  color: white;
+}
 
-  
+.right-btn {
+  border-radius: 10%;
+  margin-left: 50%;
+  text-align: center;
+  border: 10rpx solid ;
+  color: white;
+  width: 80rpx;
+}
+
+/* 时间选择器 */
+.act_item {
+  width: 650rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin-bottom: -10rpx;
+  box-sizing: border-box;
+  padding: 24rpx;
+  position: relative;
+  font-size: 28rpx;
+  color: #4D4D4D;
+  font-weight: 500;
+}
+
+.require {
+  color: #E9543E;
+}
+
+.nowp {
+  white-space: nowrap;
+  margin-right: 15rpx;
+}
+
+.act_right {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -16px;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.act_item picker {
+  flex: 1;
+  margin-left: 40rpx;
+}
+
+.act_box {
+  margin: 160rpx auto;
+  width: 650rpx;
+}
+
+.sel_text {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #4D4D4D;
+}

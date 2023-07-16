@@ -6,9 +6,7 @@ var wxCharts = require("../../utils/wxcharts");
 //定义记录初始屏幕宽度比例，便于初始化
 var dateTimePicker = require('../schedule/dateTimer.js');
 const db = wx.cloud.database({});
-const cont = db.collection('schedule');
-var windowW = 0;
-var app=getApp()
+var app = getApp()
 Page({
   data: {
     end_time: '',
@@ -24,15 +22,14 @@ Page({
     active: "home",
     show: false,
     TodoList: [],
-    check:false,
+    check: false,
   },
-  check(e){
+  check(e) {
     this.setData({
-      check:!this.data.check
+      check: !this.data.check
     });
   },
-  
-  onshow: function () {},
+
   // 打开弹窗
   showaddlistset(e) {
     var index = e.currentTarget.dataset.index;
@@ -51,7 +48,7 @@ Page({
       showStarttime: starttime,
       showEndtime: endtime,
       showId: id,
-      check : !remindable
+      check: !remindable
     })
   },
   showaddlist(e) {
@@ -69,7 +66,7 @@ Page({
       keyWord3: '',
       start_time_p: '',
       end_time_p: '',
-      check:false,
+      check: false,
     })
   },
   /**
@@ -105,32 +102,45 @@ Page({
       keyWord3: remind
     })
   },
+  allowSubscribeMessage() {
+    // hasSubscribeMessage 授权状态
+    if (!app.globalData.hasSubscribeMessage) {
+      wx.requestSubscribeMessage({
+        tmplIds: ["osj8Q4XJQgjYWbqHcqYMNFsnOw3ZBSBnTvlKR0OSiAA"], // 在此处填写模板id
+        success(res) {
+          console.log('获取权限：', res)
+          app.globalData.hasSubscribeMessage = res.errMsg.split(':')[1]
+        }
+      })
+    }
+  },
   add: function () {
-    var that = this;
+    var that=this
     var data = {
       content: this.data.keyWord2,
       endTime: this.data.end_time_p.substring(0, this.data.end_time_p.lastIndexOf(":")),
       startTime: this.data.start_time_p.substring(0, this.data.start_time_p.lastIndexOf(":")),
       remind: this.data.keyWord3,
       name: this.data.keyWord1,
-      remindable:!this.data.check,
+      remindable: !this.data.check,
     };
     utils.addData("schedule", data);
     this.setData({
-        showIndex: null,
-        keyWord1: '',
-        keyWord2: '',
-        keyWord3: '',
-        start_time_p: '',
-        end_time_p: '',
-        showRemind: '',
-        showContent: '',
-        showName: '',
-        showEndtime: '',
-        showStarttime: '',
-        check:'',
-      }),
-      that.onLoad()
+      showIndex: null,
+      keyWord1: '',
+      keyWord2: '',
+      keyWord3: '',
+      start_time_p: '',
+      end_time_p: '',
+      showRemind: '',
+      showContent: '',
+      showName: '',
+      showEndtime: '',
+      showStarttime: '',
+      check: '',
+    })
+    if(!data.remindable)this.allowSubscribeMessage()
+    that.onLoad()
   },
   //删除
   delete: function (event) {
@@ -182,7 +192,7 @@ Page({
       startTime: this.data.showStarttime,
       remind: this.data.showRemind,
       name: this.data.showName,
-      remindable:!this.data.check,
+      remindable: !this.data.check,
     }
     console.log(data);
     utils.updateData("schedule", this.data.showId, data);
@@ -195,12 +205,20 @@ Page({
       showStarttime: '',
       start_time_p: '',
       end_time_p: '',
-      check:'',
+      check: '',
     })
     that.onLoad()
   },
 
   onLoad: function (options) {
+    var app=getApp()
+    this.setData({
+      ChooseColor: app.globalData.theme.ChooseColor,
+      UnChooseColor: app.globalData.theme.UnChooseColor,
+      ChooseFontColor: app.globalData.theme.ChooseFontColor,
+      UnchooseFontColor: app.globalData.theme.UnchooseFontColor,
+      BorderColor: app.globalData.theme.BorderColor,
+    })
 
     //罗列
     var xxx = null;

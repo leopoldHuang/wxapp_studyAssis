@@ -4,9 +4,8 @@
     "pages/focus/focus",
     "pages/schedule/schedule",
     "pages/notebook/notebook",
+    "pages/notebook2/notebook2",
     "pages/mine/mine",
-    "pages/searchQuestions/camera/camera",
-    "pages/searchQuestions/result/result",
     "pages/focusHistory/focusHistory"
   ],
   "window": {

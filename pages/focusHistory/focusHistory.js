@@ -1,7 +1,7 @@
 // pages/focusHistory/focusHistory.js
 
 var util = require('../../utils/util');
-const utils = require('../../utils/utilsFunction');
+const utils = require('../../utils/utilsFunctions');
 var app=getApp()
 
 //引入wxcharts.js插件
@@ -13,12 +13,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-        //颜色
-        ChooseColor: app.globalData.theme.ChooseColor,
-        UnChooseColor: app.globalData.theme.UnChooseColor,
-        ChooseFontColor: app.globalData.theme.ChooseFontColor,
-        UnchooseFontColor: app.globalData.theme.UnchooseFontColor,
-        BorderColor: app.globalData.theme.BorderColor,
     focusData: [], // 用于存储提取的数据
     recentWeek: 0,
     TotalHours: 0
@@ -28,6 +22,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    var app=getApp()
+    this.setData({
+      ChooseColor: app.globalData.theme.ChooseColor,
+    })
     this.fetchData(); // 在页面加载时调用提取数据的函数 
     wx.getSystemInfo({
       success: (res) => {

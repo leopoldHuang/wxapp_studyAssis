@@ -1,0 +1,33 @@
+<!--pages/notebook2/notebook2.wxml-->
+
+<view>
+    <van-nav-bar
+    left-text="返回"
+    right-text="保存"
+    left-arrow
+    bind:click-left="onClickLeft"
+    bind:click-right="onClickRight"
+    />
+</view>
+
+<van-cell-group>
+  <van-field
+    value="{{ title }}"
+    placeholder="标题"
+    size="large"
+    border="{{ false }}"
+    bind:change="ChangeTitle"
+  />
+</van-cell-group>
+
+<van-cell-group>
+  <van-field
+    value="{{ content }}"
+    type="textarea"
+    placeholder="请输入内容"
+    autosize
+    custom-style="height: 480px"
+    bind:change="ChangeContent"
+    border="{{ false }}"
+  />
+</van-cell-group>

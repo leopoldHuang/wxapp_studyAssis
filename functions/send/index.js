@@ -1,6 +1,7 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
 
+
 cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
 }) // 使用当前云环境
@@ -23,33 +24,47 @@ exports.main = async (event, context) => {
   // 遍历查询结果，进行提醒操作
   for (let i = 0; i < schedules.length; i++) {
     const schedule = schedules[i]
-    var currentdate = new Date()
-    var reminddate = new Date(new Date(schedule.startTime).getTime() - parseInt(schedule.remind) * 60)
+    var currentdate = (new Date()).getTime()
+    var reminddate = (new Date(schedule.startTime)).getTime() - parseInt(schedule.remind) * 60*1000
     if (currentdate < reminddate) continue
-    console.log(schedule._openid!="o0Dwn45eyD5slyvX3gbCJDzEuVPE")
-    if(schedule._openid!="o0Dwn45eyD5slyvX3gbCJDzEuVPE")continue
-    console.log(10)
-    // 实现提醒逻辑，例如发送订阅消息
-    const result = await cloud.openapi.subscribeMessage.send({
-      touser: schedule._openid,
-      page: 'pages/index/index',
-      data: {
-        thing5: {
-          value: schedule.name
+    if (!schedule.remindable) {
+      cloud.database().collection('schedule').doc(schedule._id).update({
+        //修改函数
+        data:{
+          'remindable': true,
         },
-        time6: {
-          value: schedule.startTime
+        success: function (res) {
+          console.log(1)
+          resolve(res);
         },
-        date9: {
-          value: schedule.endTime
-        },
-        thing11: {
-          value: schedule.content
+        fail: function (err) {
+          reject(err); // 失败时将错误传递给 reject 函数
         }
-      },
-      templateId: 'osj8Q4XJQgjYWbqHcqYMNFsnOw3ZBSBnTvlKR0OSiAA'
-    })
-    console.log(result)
+      });
+      // 实现提醒逻辑，例如发送订阅消息
+      const result = await cloud.openapi.subscribeMessage.send({
+        touser: schedule._openid,
+        page: 'pages/index/index',
+        data: {
+          thing5: {
+            value: schedule.name
+          },
+          time6: {
+            value: schedule.startTime
+          },
+          date9: {
+            value: schedule.endTime
+          },
+          thing11: {
+            value: schedule.content
+          }
+        },
+        templateId: 'osj8Q4XJQgjYWbqHcqYMNFsnOw3ZBSBnTvlKR0OSiAA'
+      })
+      console.log(result)
+    }else{
+      console.log(2)
+    }
   }
 
   // return '定时提醒执行成功'

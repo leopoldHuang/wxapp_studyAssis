@@ -5,8 +5,7 @@ var utilsFunctions = require('../../utils/utilsFunctions');
 var wxCharts = require("../../utils/wxcharts");
 var windowW
 var app = getApp();
-var ChooseColor = app.globalData.theme.ChooseColor
-
+var ChooseColor=app.globalData.theme.ChooseColor
 Page({
   data: {
     date: util.formatTime(new Date()),
@@ -16,15 +15,15 @@ Page({
     //日程数据
     TodoList: []
   },
-  onLoad: function () {
-    let that = this;
+  onLoad(){
+    this.SetColor()
+    let that=this
+    var app=getApp()
     wx.cloud.callFunction({
       name: 'getOpenId',
     }).then(res => {
       app.globalData.userOpenid = res.result.openid
-      if (app.globalData.userOpenid) {
-        that.getdata()
-      }
+      that.getdata()
     })
     // 屏幕宽度
     this.setData({
@@ -187,6 +186,7 @@ Page({
 
   //颜色跟随系统
   SetColor() {
+    var app=getApp()
     this.setData({
       ChooseColor: app.globalData.theme.ChooseColor,
       UnChooseColor: app.globalData.theme.UnChooseColor,
@@ -194,11 +194,9 @@ Page({
       UnchooseFontColor: app.globalData.theme.UnchooseFontColor,
       BorderColor: app.globalData.theme.BorderColor,
     })
-    ChooseColor = app.globalData.theme.ChooseColor
+    ChooseColor=app.globalData.theme.ChooseColor
   },
   onShow: function () {
-    //设置颜色
-    this.SetColor()
     //计算日期时间
     var today = new Date().getDay();
     var week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']

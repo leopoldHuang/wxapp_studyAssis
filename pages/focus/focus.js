@@ -1,7 +1,5 @@
-var app = getApp();
 // pages/focus/focus.js
-var util = require('../../utils/util');
-const { addData } = require('../../utils/utilsFunction');
+const { addData } = require('../../utils/utilsFunctions');
 
 Page({
 
@@ -10,13 +8,6 @@ Page({
    */
 
   data: {
-    //颜色
-    ChooseColor: app.globalData.theme.ChooseColor,
-    UnChooseColor: app.globalData.theme.UnChooseColor,
-    ChooseFontColor: app.globalData.theme.ChooseFontColor,
-    UnchooseFontColor: app.globalData.theme.UnchooseFontColor,
-    BorderColor: app.globalData.theme.BorderColor,
-
     time: 0, // 总时长
     hours: 0, // 小时
     minutes: 0, // 分钟
@@ -115,8 +106,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
+  onLoad: function (options)  {
+    var app=getApp()
+    this.setData({
+      ChooseColor: app.globalData.theme.ChooseColor,
+    })
   },
 
   /**
@@ -130,7 +124,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
   },
 
 

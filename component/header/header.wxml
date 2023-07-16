@@ -8,12 +8,12 @@
   bind:click-overlay="SideClose"
 >
 <van-cell-group>
-  <van-cell title="拍照搜题" is-link url="../../pages/searchQuestions/camera/camera"/>
-  <van-cell title="单元格"/>
-  <van-cell title="单元格"/>
-  <van-cell title="单元格"/>
-  <van-cell title="单元格"/>
-  <van-cell title="单元格"/>
+  <!-- <van-cell title="拍照搜题" is-link url="../../pages/searchQuestions/camera/camera"/> -->
+  <van-cell title="敬请期待"/>
+  <van-cell title="敬请期待"/>
+  <van-cell title="敬请期待"/>
+  <van-cell title="敬请期待"/>
+  <van-cell title="敬请期待"/>
 </van-cell-group>
 </van-popup>
 <view class='head'>

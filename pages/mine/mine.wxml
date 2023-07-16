@@ -8,7 +8,7 @@
           <view class="userinfo-avatar" bindtap="bindViewTap">
         <open-data type="userAvatarUrl"></open-data>
       </view>
-      <open-data type="userNickName"></open-data>
+      <open-data type="userNickName" style="font-size: 100rpx;color:{{ChooseColor}}"></open-data>
     </block>
     <block wx:elif="{{!hasUserInfo}}">
       <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
@@ -23,35 +23,42 @@
   <view>
   <button class = 'btnShow' bindtap="ChangeTextAndColor">设置</button>
     <view class="page-section" wx:if="{{isShow}}">
-    <view class="page-section-title">设置主题颜色</view>
-    <van-field
+      <view class="page-section-title">设置主题颜色</view>
+      <view class="section">
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{colors}}">
+    <view class="picker" style="color:{{ChooseColor}}">
+      选择颜色：{{names[index]}}
+    </view>
+  </picker>
+  <van-field
     value="{{ value }}"
-    placeholder="请输入颜色"
+    placeholder="自定义颜色(单词)"
     border="{{ false }}"
     bind:confirm="ChangeChooseColor"
   />
+</view>
     <view class="page-section-title">设置背景颜色</view>
     <view class="section section_gap">
             <text class="section__title">rgb({{rgbcolor1}},,)</text>
             <view class="body-view">
-                <slider value="{{rgbcolor1}}" bindchange="ChangeColor1" min="0" max="255" show-value/>
+                <slider active-color="{{ChooseColor}}" value="{{rgbcolor1}}" bindchange="ChangeColor1" min="0" max="255" show-value/>
             </view>
         </view>
         <view class="section section_gap">
             <text class="section__title">rgb(,{{rgbcolor2}},)</text>
             <view class="body-view">
-                <slider value="{{rgbcolor2}}" bindchange="ChangeColor2" min="0" max="255" show-value/>
+                <slider active-color="{{ChooseColor}}" value="{{rgbcolor2}}" bindchange="ChangeColor2" min="0" max="255" show-value/>
             </view>
         </view>
         <view class="section section_gap">
             <text class="section__title">rgb(,,{{rgbcolor3}})</text>
             <view class="body-view">
-                <slider value="{{rgbcolor3}}" bindchange="ChangeColor3" min="0" max="255" show-value/>
+                <slider active-color="{{ChooseColor}}" value="{{rgbcolor3}}" bindchange="ChangeColor3" min="0" max="255" show-value/>
             </view>
         </view>
     <text class="section__title" >改变字体大小:{{fontSize}}</text>
             <view class="body-view">
-                <slider bindchange="ChangeText"  min="0" max="50" show-value/>
+                <slider active-color="{{ChooseColor}}" bindchange="ChangeText"  min="0" max="50" show-value/>
             </view>
     </view>
   </view> 

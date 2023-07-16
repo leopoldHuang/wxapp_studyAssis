@@ -5,9 +5,6 @@ Page({
   //根据输入修改主题颜色
   ChangeChooseColor(e) {
     app.globalData.theme.ChooseColor = e.detail
-    var pages = getCurrentPages() //获取加载的页面
-    var currentPage = pages[pages.length - 1] //获取当前页面的对象
-    var url = currentPage.route //当前页面url
     wx.reLaunch({
       url: '../mine/mine' ,
     })
@@ -23,7 +20,6 @@ Page({
     this.setData({
       isShow: !this.data.isShow,
     })
-    console.log('isShow:', e.detail.value)
   },
   //根据滑动设置rgb背景颜色
   ChangeColor1(e) {
@@ -66,6 +62,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    index:0,
     VersionValue: '',
     TeamValue: '',
     isShowApp: false,
@@ -75,6 +72,7 @@ Page({
     rgbcolor2: 255,
     rgbcolor3: 255, //rgb（0，0，0）页面颜色
     BackgroundColor: "rgb(255,255,255)",
+    ChooseColor:app.globalData.theme.ChooseColor,
     bgColor: 'white', //rgb(rgcolor1,rgcolor2,rgcolor3)",
     userInfo: {},
     hasUserInfo: false,
@@ -85,7 +83,20 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(e) {
+  onLoad () {
+    var app=getApp()
+    var ChooseColor=app.globalData.theme.ChooseColor
+    var colors=['red','blue','yellow','green','pink','orange','purple','black','gray']
+    var names=['红色','蓝色','黄色','绿色','粉色','橙色','紫色','黑色','其他']
+    var index=colors.indexOf(ChooseColor)
+    if(index==-1)index=8
+    this.setData({
+      ChooseColor: ChooseColor,
+      index:index,
+      colors:colors,
+      names:names
+    })
+    console.log()
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true,
@@ -132,7 +143,8 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -167,5 +179,12 @@ Page({
    */
   onShareAppMessage() {
 
-  }
+  },
+  bindPickerChange: function (e) {
+    var colors=['red','blue','yellow','green','pink','orange','purple','black','gray']
+    app.globalData.theme.ChooseColor = colors[e.detail.value]
+    wx.reLaunch({
+      url: '../mine/mine' ,
+    })
+  },
 })

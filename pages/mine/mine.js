@@ -12,8 +12,8 @@ Page({
   ShowApp(e) {
     this.setData({
       isShowApp: !this.data.isShowApp,
-      VersionValue: " 0.0.0.1",
-      TeamValue: "",
+      VersionValue: "1.0.0",
+      TeamValue: "_Null ...在说话 服了 雪糕不甜 荼靡 123 Kinano",
     })
   },
   ChangeTextAndColor(e) {

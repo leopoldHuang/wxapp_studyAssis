@@ -154,7 +154,9 @@ Page({
   },
   //跳转到统计页面
   ToStatistics() {
-    console.log("跳转到统计页面")
+    wx.reLaunch({
+      url: '../focusHistory/focusHistory',
+    })
   },
   //跳转到日程页面
   ToSchedule() {

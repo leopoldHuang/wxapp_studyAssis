@@ -44,6 +44,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(){
+    //主题颜色
     var app=getApp()
     this.setData({
       ChooseColor: app.globalData.theme.ChooseColor,

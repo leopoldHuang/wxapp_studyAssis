@@ -9,6 +9,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/myCourse/myCours",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

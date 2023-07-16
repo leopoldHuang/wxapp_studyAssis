@@ -1,5 +1,6 @@
 // pages/main/index.js
 var util = require('../../utils/util');
+var utilsFunctions = require('../../utils/utilsFunctions');
 //引入wxcharts.js插件
 var wxCharts = require("../../utils/wxcharts");
 var windowW
@@ -85,6 +86,9 @@ Page({
     var monday = year + "/" + (month < 10 ? "0" + month : month) + "/" + (day < 10 ? "0" + day : day);
 
     const _ = wx.cloud.database().command;
+    utilsFunctions.getData("focus").then(res => {
+      console.log(res)
+    })
     wx.cloud.database().collection('focus').where(
       _.and([{
           _openid: this.userOpenid
@@ -110,6 +114,7 @@ Page({
         that.setData({
           TotalFocusTime: TotalFocusTime.toFixed(2)
         });
+        if (!TotalFocusTime)return;
         new wxCharts({
           canvasId: 'columnCanvas',
           type: 'column',

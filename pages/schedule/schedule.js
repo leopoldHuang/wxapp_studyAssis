@@ -1,6 +1,6 @@
 // pages/main/main.js
 var util = require('../../utils/util.js');
-var utils = require('../../utils/utilsFunction');
+var utils = require('../../utils/utilsFunctions');
 //引入wxcharts.js插件
 var wxCharts = require("../../utils/wxcharts");
 //定义记录初始屏幕宽度比例，便于初始化
@@ -8,6 +8,7 @@ var dateTimePicker = require('../schedule/dateTimer.js');
 const db = wx.cloud.database({});
 const cont = db.collection('schedule');
 var windowW = 0;
+var app=getApp()
 Page({
   data: {
     end_time: '',
@@ -94,6 +95,19 @@ Page({
       keyWord3: remind
     })
   },
+  allowSubscribeMessage(){
+    // hasSubscribeMessage 授权状态
+    if (!app.globalData.hasSubscribeMessage) {
+      console.log(1)
+      wx.requestSubscribeMessage({
+        tmplIds: ["osj8Q4XJQgjYWbqHcqYMNFsnOw3ZBSBnTvlKR0OSiAA"], // 在此处填写模板id
+        success(res) {
+          console.log('获取权限：',res)
+          app.globalData.hasSubscribeMessage = res.errMsg.split(':')[1]
+        }
+      })
+    }
+  },
   add: function () {
     var that = this;
     var data = {
@@ -104,6 +118,7 @@ Page({
       name: this.data.keyWord1
     };
     utils.addData("schedule", data);
+    this.allowSubscribeMessage()
     this.setData({
         showIndex: null,
         keyWord1: '',

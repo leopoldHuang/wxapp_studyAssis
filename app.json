@@ -5,7 +5,8 @@
     "pages/schedule/schedule",
     "pages/notebook/notebook",
     "pages/mine/mine",
-    "pages/focusHistory/focusHistory"
+    "pages/focusHistory/focusHistory",
+    "pages/myCourse/myCours"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,6 +1,6 @@
 <!--pages/notebook/notebook.wxml-->
 
-<header></header>
+<header Title='笔记'></header>
 
 <view class="divLine"></view>
 

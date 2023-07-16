@@ -133,8 +133,8 @@
       </view>
     </view>
     <view class="row-btn">
-      <view class="left-btn" bindtap="closePopup">取消</view>
-      <view class="right-btn" bindtap="modify">确认</view>
+      <view class="left-btn" bindtap="closePopup" style="background-color: {{ChooseColor}};">取消</view>
+      <view class="right-btn" bindtap="modify" style="background-color: {{ChooseColor}};">确认</view>
     </view>
   </view>
 

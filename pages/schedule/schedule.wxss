@@ -130,6 +130,7 @@ button.addtodo{
   height:fit-content;
   width:fit-content;
   float:right;
+  margin-bottom: 50%;
 }
 
 .popup-box{
@@ -170,35 +171,44 @@ button.addtodo{
     position: absolute;
     top:42px;
     left:54px;
+    width:60%;
     border: 1px solid rgb(187, 187, 187); 
   }
 /* 内容 */
 view.content{
+  margin-top: 4%;
   font-size: 20px;
 }
 /* 内容输入框 */
 input.inputcontent{
   position: absolute;
-  top:142px;
-  left:54px;
+  margin-top: -7%;
+  margin-left:16%;
   width:60%;
   border: 1px solid rgb(187, 187, 187); 
 }
 /* 提醒时间 */
 view.remind{
+  margin-top: 3%;
   font-size: 20px;
 }
 input.inputremind{
   position: absolute;
   width:20%;
-  top:170px;
-  left:100px;
+  margin-top:-7%;
+  margin-left:32%;
   border: 1px solid rgb(187, 187, 187); 
 }
 view.min{
   position: absolute;
-  top:170px;
-  left:170px;
+  margin-top:-6%;
+  margin-left:55%;
+}
+radio.remindable{
+  position: absolute;
+  font-size: 12px;
+  margin-top:-6%;
+  margin-left:70%;
 }
 /* 确认取消按钮 */
 .row-btn{
@@ -206,7 +216,7 @@ view.min{
     flex-direction: row;
     align-items: center;
     border-top: 1rpx dashed #f1f1f1;
-    margin-top: 2%;
+    margin-top:4%;
   }
 .left-btn{
     margin-left: 10%;
@@ -246,7 +256,7 @@ view.min{
   .act_right {
     display: flex;
     justify-content: flex-end;
-    margin-top: -10px;
+    margin-top: -16px;
     font-size: 28rpx;
     color: #999;
   }

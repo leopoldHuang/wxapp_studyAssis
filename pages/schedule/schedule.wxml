@@ -23,7 +23,7 @@
 <view class="attribute">{{item.content}}</view>
 </view>
 <view>
-  <image src="../../images/setting.jpg" mode="scaleToFill" class="setting" bindtap="showaddlistset" data-index="0" data-content="{{item.content}}" data-name="{{item.name}}" data-remind="{{item.remind}}" data-starttime="{{item.startTime}}" data-endtime="{{item.endTime}}" data-id="{{item._id}}"></image>
+  <image src="../../images/setting.jpg" mode="scaleToFill" class="setting" bindtap="showaddlistset" data-index="0" data-content="{{item.content}}" data-name="{{item.name}}" data-remind="{{item.remind}}" data-starttime="{{item.startTime}}" data-endtime="{{item.endTime}}" data-id="{{item._id}}" data-remindable="{{item.remindable}}"></image>
 </view>
 <view>
 <image src="../../images/dustbin.jpg" mode="scaleToFill" class="trash" bindtap="delete" data-index="{{item._id}}"></image>
@@ -73,6 +73,9 @@ wx:if="{{showIndex=='1'}}">
   提醒时间：
   <input class="inputremind" value="{{keyWord3}}" bindinput="inputremind" confirm-type="send"></input>
   <view class="min">min</view>
+  <view bindtap="check">
+  <radio class="remindable" checked="{{check}}">是否提醒</radio>
+  </view>
   </view>
   <view class="row-btn">
       <view class="left-btn" bindtap="closePopup">取消</view>
@@ -122,6 +125,9 @@ wx:if="{{showIndex=='0'}}">
   提醒时间：
   <input class="inputremind" value="{{showRemind}}" bindinput="inputremindset" confirm-type="send"></input>
   <view class="min">min</view>
+  <view bindtap="check">
+  <radio class="remindable" checked="{{check}}">是否提醒</radio>
+  </view>
   </view>
   <view class="row-btn">
       <view class="left-btn" bindtap="closePopup">取消</view>

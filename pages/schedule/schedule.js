@@ -24,7 +24,14 @@ Page({
     active: "home",
     show: false,
     TodoList: [],
+    check:false,
   },
+  check(e){
+    this.setData({
+      check:!this.data.check
+    });
+  },
+  
   onshow: function () {},
   // 打开弹窗
   showaddlistset(e) {
@@ -35,6 +42,7 @@ Page({
     var starttime = e.currentTarget.dataset.starttime;
     var endtime = e.currentTarget.dataset.endtime;
     var id = e.currentTarget.dataset.id;
+    var remindable = e.currentTarget.dataset.remindable;
     this.setData({
       showIndex: index,
       showContent: content,
@@ -42,7 +50,8 @@ Page({
       showName: name,
       showStarttime: starttime,
       showEndtime: endtime,
-      showId: id
+      showId: id,
+      check : !remindable
     })
   },
   showaddlist(e) {
@@ -60,6 +69,7 @@ Page({
       keyWord3: '',
       start_time_p: '',
       end_time_p: '',
+      check:false,
     })
   },
   /**
@@ -95,19 +105,6 @@ Page({
       keyWord3: remind
     })
   },
-  allowSubscribeMessage(){
-    // hasSubscribeMessage 授权状态
-    if (!app.globalData.hasSubscribeMessage) {
-      console.log(1)
-      wx.requestSubscribeMessage({
-        tmplIds: ["osj8Q4XJQgjYWbqHcqYMNFsnOw3ZBSBnTvlKR0OSiAA"], // 在此处填写模板id
-        success(res) {
-          console.log('获取权限：',res)
-          app.globalData.hasSubscribeMessage = res.errMsg.split(':')[1]
-        }
-      })
-    }
-  },
   add: function () {
     var that = this;
     var data = {
@@ -115,10 +112,10 @@ Page({
       endTime: this.data.end_time_p.substring(0, this.data.end_time_p.lastIndexOf(":")),
       startTime: this.data.start_time_p.substring(0, this.data.start_time_p.lastIndexOf(":")),
       remind: this.data.keyWord3,
-      name: this.data.keyWord1
+      name: this.data.keyWord1,
+      remindable:!this.data.check,
     };
     utils.addData("schedule", data);
-    this.allowSubscribeMessage()
     this.setData({
         showIndex: null,
         keyWord1: '',
@@ -131,13 +128,14 @@ Page({
         showName: '',
         showEndtime: '',
         showStarttime: '',
+        check:'',
       }),
       that.onLoad()
   },
   //删除
   delete: function (event) {
     var that = this;
-    console.log(event.currentTarget.dataset.index);
+    // console.log(event.currentTarget.dataset.index);
     utils.updateData("schedule", event.currentTarget.dataset.index, null);
     that.onLoad()
   },
@@ -162,9 +160,9 @@ Page({
   },
   //修改
   modify: function (event) {
-    console.log(this.data.showName);
-    console.log(this.data.showContent);
-    console.log(this.data.showRemind);
+    // console.log(this.data.showName);
+    // console.log(this.data.showContent);
+    // console.log(this.data.showRemind);
     var that = this;
     if (this.data.end_time_p) {
       this.setData({
@@ -183,7 +181,8 @@ Page({
       endTime: this.data.showEndtime,
       startTime: this.data.showStarttime,
       remind: this.data.showRemind,
-      name: this.data.showName
+      name: this.data.showName,
+      remindable:!this.data.check,
     }
     console.log(data);
     utils.updateData("schedule", this.data.showId, data);
@@ -196,6 +195,7 @@ Page({
       showStarttime: '',
       start_time_p: '',
       end_time_p: '',
+      check:'',
     })
     that.onLoad()
   },
